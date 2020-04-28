@@ -1,5 +1,0 @@
-/Users/willyaguirre/Documents/culqi.net/culqi.net/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
-/Users/willyaguirre/Documents/culqi.net/culqi.net/bin/Debug/culqi.net.dll.mdb
-/Users/willyaguirre/Documents/culqi.net/culqi.net/bin/Debug/culqi.net.dll
-/Users/willyaguirre/Documents/culqi.net/culqi.net/obj/Debug/culqi.net.dll
-/Users/willyaguirre/Documents/culqi.net/culqi.net/obj/Debug/culqi.net.dll.mdb

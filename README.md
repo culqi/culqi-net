@@ -1,168 +1,175 @@
-# culqi-net
-Una implementación de Culqi para .NET
+# Culqi.net
+Biblioteca oficial de [Culqi][culqiwebsite] para .NET, compatible con .Net Standard 2.0+, .Net Core 2.0+ y .Net Framework 4.5+
 
 | Versión actual|Culqi API|
 |----|----|
-| 0.1 (2017-02-19) |[v2](https://culqi.com/api/)|
+| 0.1 (2017-02-19) |[v2][api-documentation]|
 
-## Requisitos
+## Documentación
 
-- NET Framework 4.*
-- Credenciales de comercio en Culqi (1).
+Para obtener una visón más clara del API, consulta la [documentación.][api-documentation]
 
-## Ejemplos
+## Uso
 
-#### Generar nombres aleatorios
+### Configuración general
+Puedes hacer uso de la clase `CulqiConfiguration` para asignar la variable `ApiKey` por única vez.
 
-```cs
-protected static string GetRandomString()
-{
-	string path = Path.GetRandomFileName();
-	path = path.Replace(".", "");
-	return path;
-}
+```c#
+CulqiConfiguration.ApiKey = "SECRET API KEY";
+```
+Además puedes agregar una llave llamada `CulqiApiKey` en las `AppSettings` de tu aplicación.
+
+```xml
+<appSettings>
+    ...
+    <add key="CulqiApiKey" value="SECRET API KEY"/>
+</appSettings>
 ```
 
-#### Inicialización
+### Configuración por petición
 
-```cs
-Security security = new Security();
-security.public_key = "{LLAVE PUBLICA}";
-security.secret_key = "{LLAVE SECRETA}";
+Todos los métodos del servicio aceptan un objeto opcional `RequestOptions`. Esto es usado si deseas establecer el API Key en cada petición.
+
+```c#
+var requestOptions = new RequestOptions();
+requestOptions.ApiKey = "SECRET API KEY";
 ```
 
-#### Crear Token
+### Crear Token
 
-```cs
-Dictionary<string, object> token = new Dictionary<string, object>
+```c#
+TokenService tokenService = new TokenService();
+
+var tokenOptions = new TokenCreateOptions()
 {
-	{"card_number", "4111111111111111"},
-	{"cvv", "123"},
-	{"expiration_month", 9},
-	{"expiration_year", 2020},
-	{"email", "wmuro@me.com"}
+    CardNumber = "4111111111111111",
+    ExpirationMonth = "09",
+    ExpirationYear = "2029",                
+    Cvv = "123",
+    Email = "richard@piedpiper.com"
 };
-string token_created = new Token(security).Create(token);
+
+Token token = await tokenService.Create(tokenOptions);
 ```
 
 
-#### Crear Cargo
+### Crear Cargo
 
-```cs
-var json_token = JObject.Parse(token_created);
+```c#
+ChargeService chargeService = new ChargeService();
 
-Dictionary<string, object> metadata = new Dictionary<string, object>
+var chargeCreateOptions = new ChargeCreateOptions 
 {
-	{"order_id", "777"}
+    Amount = 100000,
+    CurrencyCode = "PEN",
+    Email = "wilsonvargas_6@outlook.com",
+    SourceId = "tkn_test_o1tYygTfUzugALDq",
+    Description = "Test Charge from .net platform"
 };
 
-Dictionary<string, object> charge = new Dictionary<string, object>
-{
-	{"amount", 1000},
-	{"capture", true},
-	{"currency_code", "PEN"},
-	{"description", "Venta de prueba"},
-	{"email", "wmuro@me.com"},
-	{"installments", 0},
-	{"metadata", metadata},
-	{"source_id", (string)json_token["id"]}
-};
-
-string charge_created = new Charge(security).Create(charge);
+Charge charge = await chargeService.Create(chargeCreateOptions);
 ```
 
-#### Crear Plan
+### Crear Plan
 
-```cs
-Dictionary<string, object> metadata = new Dictionary<string, object>
-{
-	{"alias", "plan-test"}
+```c#
+PlanService planService = new PlanService();
+
+var planOptions = new PlanCreateOptions 
+{ 
+    Name = ".Net Subscription",
+    Amount = 1000,
+    CurrencyCode = "PEN",
+    Interval = "meses",
+    IntervalCount = 1,
+    Limit = 12        
 };
 
-Dictionary<string, object> plan = new Dictionary<string, object>
-{
-	{"amount", 10000},
-	{"currency_code", "PEN"},
-	{"interval", "dias"},
-	{"interval_count", 15},
-	{"limit", 2},
-	{"metadata", metadata},
-	{"name", "plan-culqi-"+GetRandomString()},
-	{"trial_days", 15}
-};
-
-string plan_created = new Plan(security).Create(plan);
+Plan plan = await planService.Create(planOptions);
 ```
 
-#### Crear Cliente
+### Crear Cliente
 
-```cs
-Dictionary<string, object> customer = new Dictionary<string, object>
-{
-	{"address", "Av Lima 123"},
-	{"address_city", "Lima"},
-	{"country_code", "PE"},
-	{"email", "test"+GetRandomString()+"@culqi.com"},
-	{"first_name", "Test"},
-	{"last_name", "Culqi"},
-	{"phone_number", 99004356}
+```c#
+CustomerService customerService = new CustomerService();
+
+var customerOptions = new CustomerCreateOptions 
+{ 
+    FirstName = "Wilson",
+    LastName = "Vargas",
+    Email = "wilsonvargasm@outlook.com",
+    Address = "San Francisco Bay Area",
+    AddressCity = "Palo Alto",
+    CountryCode = "US",
+    PhoneNumber = "6505434800"
 };
 
-string customer_created = new Customer(security).Create(customer);
+Customer customer = await customerService.Create(customerOptions);
 ```
 
-#### Crear Tarjeta
+### Crear Tarjeta
 
-```cs
-var json_customer = JObject.Parse(customer_created);
+```c#
+CardService cardService = new CardService();
 
-Dictionary<string, object> card = new Dictionary<string, object>
+var cardOptions = new CardCreateOptions
 {
-	{"customer_id", (string)json_customer["id"]},
-	{"token_id", (string)json_token["id"]}
+    CustomerId = "cus_live_Lz6Yfsm7QqCPIECW",
+    TokenId = "tkn_live_vEcZSCOVz5PGDPdQ"
 };
 
-string card_created = new Card(security).Create(card);
+Card card = await cardService.Create(cardOptions);
 ```
 
-#### Crear Suscripción
+### Crear Suscripción
 
-```cs
-var json_plan = JObject.Parse(plan_created);
-var json_card = JObject.Parse(card_created);
+```c#
+SubscriptionService subscriptionService = new SubscriptionService();
 
-Dictionary<string, object> subscription = new Dictionary<string, object>
-{
-	{"card_id", (string)json_card["id"]},
-	{"plan_id", (string)json_plan["id"]}
+var subscriptionOptions = new SubscriptionCreateOptions 
+{ 
+    CardId = "crd_live_b3MMECR8cJ5tZqf2",
+    PlanId = "pln_live_jwOAYnxX49o2ydWv",
 };
 
-string subscription_created = new Subscription(security).Create(subscription);
+Subscription subscription = await subscriptionService.Create(subscriptionOptions);
 ```
 
-#### Crear Devolución
+### Crear Devolución
 
-```cs
-var json_charge = JObject.Parse(charge_created);
+```c#
+RefundService refundService = new RefundService();
 
-Dictionary<string, object> refund = new Dictionary<string, object>
+var refundOptions = new RefundCreateOptions 
 {
-	{"amount", 500},
-	{"charge_id", (string)json_charge["id"]},
-	{"reason", "solicitud_comprador"}
+    Amount = 2000,
+    ChargeId = "chr_live_7lYOtONQ9LxcgJUW",
+    Reason = "Fraudulento"
 };
 
-return new Refund(security).Create(refund);
+Refund refund = await refundService.Create(refundOptions);
 ```
 
 ## Documentación
-¿Necesitas más información para integrar `culqi-net`? La documentación completa se encuentra en [https://culqi.com/docs/](https://culqi.com/docs/)
+¿Necesitas más información para integrar `Culqi.net`? La documentación completa se encuentra en [https://culqi.com/docs/][documentation]
 
-## Autor
+## Colaboradores
 
 Willy Aguirre ([@marti1125](https://github.com/marti1125) - Team Culqi)
 
+Wilson Vargas ([@wilsonvargas](https://github.com/wilsonvargas))
+
+Para cualquier solicitud, error o comentario, por favor [abre un issue][issues] o [envía un pull request][pr].
+
 ## Licencia
 
-El código fuente de culqi-net está distribuido bajo MIT License, revisar el archivo
-[LICENSE](https://github.com/culqi/culqi-net/blob/master/LICENSE).
+El código fuente de Culqi.net está distribuido bajo MIT License, revisar el archivo
+[LICENSE][license].
+
+
+[pr]: https://github.com/culqi/culqi-net/pulls
+[issues]: https://github.com/culqi/culqi-net/issues
+[culqiwebsite]:https://culqi.com/
+[api-documentation]:https://www.culqi.com/api/
+[documentation]:https://culqi.com/docs/
+[license]:https://github.com/culqi/culqi-net/blob/master/LICENSE
