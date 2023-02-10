@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1704.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "culqinet", "culqinet\culqinet.csproj", "{80FF7FB0-D2A7-404C-ACEB-A26665B6DFC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pruebas", "Pruebas\Pruebas.csproj", "{D8FDB2A4-0D04-4C69-B984-94ACA0478B60}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{80FF7FB0-D2A7-404C-ACEB-A26665B6DFC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80FF7FB0-D2A7-404C-ACEB-A26665B6DFC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80FF7FB0-D2A7-404C-ACEB-A26665B6DFC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80FF7FB0-D2A7-404C-ACEB-A26665B6DFC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8FDB2A4-0D04-4C69-B984-94ACA0478B60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8FDB2A4-0D04-4C69-B984-94ACA0478B60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8FDB2A4-0D04-4C69-B984-94ACA0478B60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8FDB2A4-0D04-4C69-B984-94ACA0478B60}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3ED17BC0-972E-47B7-AA21-EC47FB509700}
+	EndGlobalSection
+EndGlobal

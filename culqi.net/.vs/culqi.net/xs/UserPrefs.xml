@@ -1,0 +1,27 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument="test/TestAll.cs">
+    <Files>
+      <File FileName="test/TestAll.cs" Line="124" Column="25" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="culqi.net" expanded="True">
+            <Node name="culqi.net" expanded="True">
+              <Node name="Dependencies" expanded="True" />
+              <Node name="packages" expanded="True" />
+              <Node name="util" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.culqi.net PreferredExecutionTarget="MonoDevelop.Default" />
+</Properties>
