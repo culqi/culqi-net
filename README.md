@@ -1,13 +1,9 @@
 # culqi-net
 Una implementación de Culqi para .NET
 
-| Versión actual|Culqi API|
-|----|----|
-| 0.1 (2017-02-19) |[v2](https://culqi.com/api/)|
-
 ## Requisitos
 
-- NET Framework 4.*
+- NET Core 4.*
 - Credenciales de comercio en Culqi (1).
 
 ## Ejemplos
