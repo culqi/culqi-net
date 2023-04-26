@@ -28,7 +28,8 @@ namespace culqi.net
 			string tokens = new Token(security).List(filter);
 			JObject json_tokens = JObject.Parse(tokens);
 			List<Dictionary<string, object>>  data =  json_tokens["data"].ToObject<List<Dictionary<string, object>>>();
-			bool valid = true;
+			bool valid = false;
+			Console.WriteLine(data);
 			if (data.Count >= 0)
 			{
 				valid = true;

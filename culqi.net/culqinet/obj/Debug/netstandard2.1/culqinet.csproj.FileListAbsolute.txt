@@ -8,3 +8,13 @@
 /Users/apple/Projects/culqinet/culqinet/bin/Debug/netstandard2.1/culqinet.pdb
 /Users/apple/Projects/culqinet/culqinet/obj/Debug/netstandard2.1/culqinet.dll
 /Users/apple/Projects/culqinet/culqinet/obj/Debug/netstandard2.1/culqinet.pdb
+/Users/admin/Documents/Culqi/culqinet/culqinet/bin/Debug/netstandard2.1/culqinet.deps.json
+/Users/admin/Documents/Culqi/culqinet/culqinet/bin/Debug/netstandard2.1/culqinet.dll
+/Users/admin/Documents/Culqi/culqinet/culqinet/bin/Debug/netstandard2.1/culqinet.pdb
+/Users/admin/Documents/Culqi/culqinet/culqinet/obj/Debug/netstandard2.1/culqinet.csproj.AssemblyReference.cache
+/Users/admin/Documents/Culqi/culqinet/culqinet/obj/Debug/netstandard2.1/culqinet.GeneratedMSBuildEditorConfig.editorconfig
+/Users/admin/Documents/Culqi/culqinet/culqinet/obj/Debug/netstandard2.1/culqinet.AssemblyInfoInputs.cache
+/Users/admin/Documents/Culqi/culqinet/culqinet/obj/Debug/netstandard2.1/culqinet.AssemblyInfo.cs
+/Users/admin/Documents/Culqi/culqinet/culqinet/obj/Debug/netstandard2.1/culqinet.csproj.CoreCompileInputs.cache
+/Users/admin/Documents/Culqi/culqinet/culqinet/obj/Debug/netstandard2.1/culqinet.dll
+/Users/admin/Documents/Culqi/culqinet/culqinet/obj/Debug/netstandard2.1/culqinet.pdb

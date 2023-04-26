@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/apple/Projects/culqinet/Pruebas/Pruebas.csproj": {}
+    "/Users/admin/Documents/Culqi/culqinet/Pruebas/Pruebas.csproj": {}
   },
   "projects": {
-    "/Users/apple/Projects/culqinet/culqinet/culqinet.csproj": {
+    "/Users/admin/Documents/Culqi/culqinet/culqinet/culqinet.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/apple/Projects/culqinet/culqinet/culqinet.csproj",
+        "projectUniqueName": "/Users/admin/Documents/Culqi/culqinet/culqinet/culqinet.csproj",
         "projectName": "culqinet",
-        "projectPath": "/Users/apple/Projects/culqinet/culqinet/culqinet.csproj",
-        "packagesPath": "/Users/apple/.nuget/packages/",
-        "outputPath": "/Users/apple/Projects/culqinet/culqinet/obj/",
+        "projectPath": "/Users/admin/Documents/Culqi/culqinet/culqinet/culqinet.csproj",
+        "packagesPath": "/Users/admin/.nuget/packages/",
+        "outputPath": "/Users/admin/Documents/Culqi/culqinet/culqinet/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/apple/.nuget/NuGet/NuGet.Config"
+          "/Users/admin/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.1"
@@ -38,6 +38,10 @@
         "netstandard2.1": {
           "targetAlias": "netstandard2.1",
           "dependencies": {
+            "BouncyCastle": {
+              "target": "Package",
+              "version": "[1.8.9, )"
+            },
             "Microsoft.VisualStudio.UnitTesting": {
               "target": "Package",
               "version": "[11.0.50727.1, )"
@@ -53,6 +57,14 @@
             "RestSharp": {
               "target": "Package",
               "version": "[108.0.3, )"
+            },
+            "System.Security.Cryptography.OpenSsl": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "runtime.native.System.Security.Cryptography.OpenSsl": {
+              "target": "Package",
+              "version": "[4.3.3, )"
             }
           },
           "imports": [
@@ -71,21 +83,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
         }
       }
     },
-    "/Users/apple/Projects/culqinet/Pruebas/Pruebas.csproj": {
+    "/Users/admin/Documents/Culqi/culqinet/Pruebas/Pruebas.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/apple/Projects/culqinet/Pruebas/Pruebas.csproj",
+        "projectUniqueName": "/Users/admin/Documents/Culqi/culqinet/Pruebas/Pruebas.csproj",
         "projectName": "Pruebas",
-        "projectPath": "/Users/apple/Projects/culqinet/Pruebas/Pruebas.csproj",
-        "packagesPath": "/Users/apple/.nuget/packages/",
-        "outputPath": "/Users/apple/Projects/culqinet/Pruebas/obj/",
+        "projectPath": "/Users/admin/Documents/Culqi/culqinet/Pruebas/Pruebas.csproj",
+        "packagesPath": "/Users/admin/.nuget/packages/",
+        "outputPath": "/Users/admin/Documents/Culqi/culqinet/Pruebas/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/apple/.nuget/NuGet/NuGet.Config"
+          "/Users/admin/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -97,8 +109,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/Users/apple/Projects/culqinet/culqinet/culqinet.csproj": {
-                "projectPath": "/Users/apple/Projects/culqinet/culqinet/culqinet.csproj"
+              "/Users/admin/Documents/Culqi/culqinet/culqinet/culqinet.csproj": {
+                "projectPath": "/Users/admin/Documents/Culqi/culqinet/culqinet/culqinet.csproj"
               }
             }
           }
@@ -129,6 +141,10 @@
               "target": "Package",
               "version": "[4.2.1, )"
             },
+            "System.Security.Cryptography.OpenSsl": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
             "coverlet.collector": {
               "target": "Package",
               "version": "[3.1.2, )"
@@ -150,7 +166,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.102/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
         }
       }
     }
