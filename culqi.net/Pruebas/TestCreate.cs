@@ -27,7 +27,9 @@ namespace culqi.net
 			security = new Security();
 			security.public_key = "INSERTE_SU_LLAVE_PUBLICA";
 			security.secret_key = "INSERTE_SU_LLAVE_PRIVADA";
-		}
+			security.rsa_id = "INSERTE_SU_RSA_ID";
+			security.rsa_key = "INSERTE_SU_LLAVE_RSA";
+        }
 
 		protected static string GetRandomString()
 		{
@@ -40,11 +42,11 @@ namespace culqi.net
 		{	
 			Dictionary<string, object> map = new Dictionary<string, object>
 			{
-				{"card_number", "4456530000001096"},
-				{"cvv", "111"},
-				{"expiration_month", "07"},
-				{"expiration_year", "2023"},
-				{"email", "jordan.diaz@culqi.com"}
+				{"card_number", "4557880621568322"},
+				{"cvv", "978"},
+				{"expiration_month", "11"},
+				{"expiration_year", "2026"},
+				{"email", "test.culqi@culqi.com"}
 			};
 			return new Token(security).Create(map);
 		}
@@ -59,6 +61,30 @@ namespace culqi.net
 
 			Assert.AreEqual("token",(string)json_object["object"]);
 		}
+
+        protected string CreateTokenEncrypt()
+        {
+            Dictionary<string, object> map = new Dictionary<string, object>
+            {
+                {"card_number", "4557880621568322"},
+                {"cvv", "978"},
+                {"expiration_month", "11"},
+                {"expiration_year", "2026"},
+                {"email", "jordan.diaz@culqi.com"}
+            };
+            return new Token(security).Create(map, security.rsa_id, security.rsa_key);
+        }
+
+        [Test]
+        public void ValidCreateTokenEncrypt()
+        {
+            string data = CreateTokenEncrypt();
+
+            var json_object = JObject.Parse(data);
+            Console.WriteLine(json_object);
+
+            Assert.AreEqual("token", (string)json_object["object"]);
+        }
 
         protected string CreateTokenYape()
         {
@@ -118,6 +144,44 @@ namespace culqi.net
 			Assert.AreEqual("charge", (string)json_object["object"]);
 		}
 
+        protected string CreateChargeEncrypt()
+        {
+
+            string data = CreateToken();
+
+            var json_object = JObject.Parse(data);
+
+            Dictionary<string, object> metadata = new Dictionary<string, object>
+            {
+                {"order_id", "777"}
+            };
+
+            Dictionary<string, object> map = new Dictionary<string, object>
+            {
+                {"amount", 1000},
+                {"capture", true},
+                {"currency_code", "PEN"},
+                {"description", "Venta de prueba"},
+                {"email", "wmuro@me.com"},
+                {"installments", 0},
+                {"metadata", metadata},
+                {"source_id", (string)json_object["id"]}
+            };
+
+            return new Charge(security).Create(map, security.rsa_id, security.rsa_key);
+
+        }
+
+        [Test]
+        public void ValidCreateChargeEncrypt()
+        {
+            string data = CreateChargeEncrypt();
+
+            var json_object = JObject.Parse(data);
+
+            Assert.AreEqual("charge", (string)json_object["object"]);
+        }
+
         protected string CreateOrder()
         {
 
@@ -157,6 +221,51 @@ namespace culqi.net
         public void ValidCreateOrder()
         {
             string data = CreateOrder();
+
+            var json_object = JObject.Parse(data);
+
+            Assert.AreEqual("order", (string)json_object["object"]);
+        }
+
+        protected string CreateOrderEncrypt()
+        {
+
+            string data = CreateToken();
+
+            var json_object = JObject.Parse(data);
+            int order_number = GetRandomNumber();
+            TimeSpan t = DateTime.UtcNow.AddDays(1) - new DateTime(1970, 1, 1);
+            int secondsSinceEpoch = (int)t.TotalSeconds;
+
+            Dictionary<string, object> client_details = new Dictionary<string, object>
+            {
+                {"first_name", "Juan"},
+                {"last_name", "Diaz"},
+                {"email", "juan.diaz@culqi.com"},
+                {"phone_number", "+51948747421"},
+
+            };
+
+            Dictionary<string, object> map = new Dictionary<string, object>
+            {
+                {"amount", 1000},
+                {"currency_code", "PEN"},
+                {"description", "Venta de prueba"},
+                {"order_number", "pedido"+Convert.ToString(order_number)},
+                {"client_details", client_details},
+                {"expiration_date", secondsSinceEpoch},
+                {"confirm", true}
+
+            };
+
+            return new Order(security).Create(map, security.rsa_id, security.rsa_key);
+
+        }
+
+        [Test]
+        public void ValidCreateOrderEncrypt()
+        {
+            string data = CreateOrderEncrypt();
 
             var json_object = JObject.Parse(data);
 

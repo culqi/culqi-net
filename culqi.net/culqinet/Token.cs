@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
+using culqinet.util;
+using Newtonsoft.Json;
+
 namespace culqi.net
 {
 	public class Token
 	{
-		const string URL = "/tokens/";
+		const string URL = "/tokens";
 
 		Security security { get; set; }
 
@@ -22,6 +26,19 @@ namespace culqi.net
 		{
 			return new Util().Request(body, URL, security.public_key, "post");
 		}
+
+        public string Create(Dictionary<string, object> body, String rsa_id, String rsa_key)
+        {
+			Encrypt encrypt = new Encrypt();
+            var jsonString = JsonConvert.SerializeObject(body);
+
+            // Llamada a la función EncryptWithAESRSAAsync
+            var encryptedResultTask = encrypt.EncryptWithAESRSA(jsonString, rsa_key, true);
+            // Esperar a que la tarea se complete y obtener el resultado usando la propiedad Result
+            var encryptedResult = encryptedResultTask.Result;
+			body = encryptedResult;
+            return new Util().Request(body, URL, security.public_key, "post", rsa_id);
+        }
 
         public string CreateYape(Dictionary<string, object> body)
         {

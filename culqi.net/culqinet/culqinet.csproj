@@ -17,6 +17,9 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <PackageReference Include="NUnit" Version="3.13.3" />
     <PackageReference Include="Microsoft.VisualStudio.UnitTesting" Version="11.0.50727.1" />
+    <PackageReference Include="System.Security.Cryptography.OpenSsl" Version="5.0.0" />
+    <PackageReference Include="runtime.native.System.Security.Cryptography.OpenSsl" Version="4.3.3" />
+    <PackageReference Include="BouncyCastle" Version="1.8.9" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="test\" />
