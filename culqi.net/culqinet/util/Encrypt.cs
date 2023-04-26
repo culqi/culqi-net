@@ -60,24 +60,29 @@ namespace culqinet.util
 
             string encryptedDataBase64 = Convert.ToBase64String(encryptedData);
 
-            RSA rsaPublicKey = RSA.Create();
-            string pubKey = "<RSAKeyValue><Modulus>" + publicKey + "</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>";
+            string publicKeyString = publicKey;
 
-            rsaPublicKey.FromXmlString(pubKey);
+            byte[] publicKeyBytes = Convert.FromBase64String(publicKeyString);
 
-            byte[] encryptedKey = rsaPublicKey.Encrypt(key, RSAEncryptionPadding.OaepSHA1);
-            byte[] encryptedIv = rsaPublicKey.Encrypt(iv, RSAEncryptionPadding.OaepSHA1);
+            // Create an RSA object and load the public key
+            using RSACryptoServiceProvider rsa = new RSACryptoServiceProvider();
+            rsa.ImportSubjectPublicKeyInfo(publicKeyBytes, out _);
 
-            string encryptedKeyBase64 = Convert.ToBase64String(encryptedKey);
-            string encryptedIvBase64 = Convert.ToBase64String(encryptedIv);
+            // Encrypt the message using RSA encryption with OAEP padding and SHA-1 hash algorithm
+            byte[] encryptedMessageBytesKey = rsa.Encrypt(key, RSAEncryptionPadding.OaepSHA1);
+            byte[] encryptedMessageBytesIv = rsa.Encrypt(iv, RSAEncryptionPadding.OaepSHA1);
 
-          
+            // Convert the encrypted message to base64 string for transmission
+            string encryptedMessageBase64Key = Convert.ToBase64String(encryptedMessageBytesKey);
+            string encryptedMessageBase64Iv= Convert.ToBase64String(encryptedMessageBytesIv);
+
             return new Dictionary<string, object>
                         {
                             { "encrypted_data", encryptedDataBase64 },
-                            { "encrypted_key", encryptedKeyBase64 },
-                            { "encrypted_iv", encryptedIvBase64 }
+                            { "encrypted_key", encryptedMessageBase64Key },
+                            { "encrypted_iv", encryptedMessageBase64Iv }
                         };
+
 
 
 
