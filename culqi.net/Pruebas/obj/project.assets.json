@@ -1194,11 +1194,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/admin/Projects/CulqiNet/Pruebas/Pruebas.csproj",
+      "projectUniqueName": "/Users/admin/Documents/Culqi_Final/culqi-net/culqi.net/Pruebas/Pruebas.csproj",
       "projectName": "Pruebas",
-      "projectPath": "/Users/admin/Projects/CulqiNet/Pruebas/Pruebas.csproj",
+      "projectPath": "/Users/admin/Documents/Culqi_Final/culqi-net/culqi.net/Pruebas/Pruebas.csproj",
       "packagesPath": "/Users/admin/.nuget/packages/",
-      "outputPath": "/Users/admin/Projects/CulqiNet/Pruebas/obj/",
+      "outputPath": "/Users/admin/Documents/Culqi_Final/culqi-net/culqi.net/Pruebas/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/admin/.nuget/NuGet/NuGet.Config"
@@ -1213,8 +1213,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "/Users/admin/Projects/CulqiNet/CulqiNet/CulqiNet.csproj": {
-              "projectPath": "/Users/admin/Projects/CulqiNet/CulqiNet/CulqiNet.csproj"
+            "/Users/admin/Documents/Culqi_Final/culqi-net/culqi.net/CulqiNet/CulqiNet.csproj": {
+              "projectPath": "/Users/admin/Documents/Culqi_Final/culqi-net/culqi.net/CulqiNet/CulqiNet.csproj"
             }
           }
         }
