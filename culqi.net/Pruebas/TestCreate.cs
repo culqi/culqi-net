@@ -43,7 +43,7 @@ namespace culqi.net
 			Dictionary<string, object> map = new Dictionary<string, object>
 			{
 				{"card_number", "4557880621568322"},
-				{"cvv", "978"},
+				{"cvv", "111"},
 				{"expiration_month", "11"},
 				{"expiration_year", "2026"},
 				{"email", "test.culqi@culqi.com"}
@@ -67,7 +67,7 @@ namespace culqi.net
             Dictionary<string, object> map = new Dictionary<string, object>
             {
                 {"card_number", "4557880621568322"},
-                {"cvv", "978"},
+                {"cvv", "111"},
                 {"expiration_month", "11"},
                 {"expiration_year", "2026"},
                 {"email", "jordan.diaz@culqi.com"}
