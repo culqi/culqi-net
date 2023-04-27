@@ -1,30 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "/Users/admin/Documents/Culqi/culqinet/Pruebas/Pruebas.csproj": {}
+    "/Users/admin/Projects/CulqiNet/Pruebas/Pruebas.csproj": {}
   },
   "projects": {
-    "/Users/admin/Documents/Culqi/culqinet/culqinet/culqinet.csproj": {
+    "/Users/admin/Projects/CulqiNet/CulqiNet/CulqiNet.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/admin/Documents/Culqi/culqinet/culqinet/culqinet.csproj",
-        "projectName": "culqinet",
-        "projectPath": "/Users/admin/Documents/Culqi/culqinet/culqinet/culqinet.csproj",
+        "projectUniqueName": "/Users/admin/Projects/CulqiNet/CulqiNet/CulqiNet.csproj",
+        "projectName": "CulqiNet",
+        "projectPath": "/Users/admin/Projects/CulqiNet/CulqiNet/CulqiNet.csproj",
         "packagesPath": "/Users/admin/.nuget/packages/",
-        "outputPath": "/Users/admin/Documents/Culqi/culqinet/culqinet/obj/",
+        "outputPath": "/Users/admin/Projects/CulqiNet/CulqiNet/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/admin/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "netstandard2.1"
+          "net7.0"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "netstandard2.1": {
-            "targetAlias": "netstandard2.1",
+          "net7.0": {
+            "targetAlias": "net7.0",
             "projectReferences": {}
           }
         },
@@ -35,36 +35,16 @@
         }
       },
       "frameworks": {
-        "netstandard2.1": {
-          "targetAlias": "netstandard2.1",
+        "net7.0": {
+          "targetAlias": "net7.0",
           "dependencies": {
-            "BouncyCastle": {
-              "target": "Package",
-              "version": "[1.8.9, )"
-            },
-            "Microsoft.VisualStudio.UnitTesting": {
-              "target": "Package",
-              "version": "[11.0.50727.1, )"
-            },
-            "NUnit": {
-              "target": "Package",
-              "version": "[3.13.3, )"
-            },
             "Newtonsoft.Json": {
               "target": "Package",
-              "version": "[13.0.2, )"
+              "version": "[13.0.3, )"
             },
             "RestSharp": {
               "target": "Package",
-              "version": "[108.0.3, )"
-            },
-            "System.Security.Cryptography.OpenSsl": {
-              "target": "Package",
-              "version": "[5.0.0, )"
-            },
-            "runtime.native.System.Security.Cryptography.OpenSsl": {
-              "target": "Package",
-              "version": "[4.3.3, )"
+              "version": "[110.2.0, )"
             }
           },
           "imports": [
@@ -79,7 +59,7 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "NETStandard.Library": {
+            "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
@@ -87,30 +67,30 @@
         }
       }
     },
-    "/Users/admin/Documents/Culqi/culqinet/Pruebas/Pruebas.csproj": {
+    "/Users/admin/Projects/CulqiNet/Pruebas/Pruebas.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/admin/Documents/Culqi/culqinet/Pruebas/Pruebas.csproj",
+        "projectUniqueName": "/Users/admin/Projects/CulqiNet/Pruebas/Pruebas.csproj",
         "projectName": "Pruebas",
-        "projectPath": "/Users/admin/Documents/Culqi/culqinet/Pruebas/Pruebas.csproj",
+        "projectPath": "/Users/admin/Projects/CulqiNet/Pruebas/Pruebas.csproj",
         "packagesPath": "/Users/admin/.nuget/packages/",
-        "outputPath": "/Users/admin/Documents/Culqi/culqinet/Pruebas/obj/",
+        "outputPath": "/Users/admin/Projects/CulqiNet/Pruebas/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/admin/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net6.0"
+          "net7.0"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
+          "net7.0": {
+            "targetAlias": "net7.0",
             "projectReferences": {
-              "/Users/admin/Documents/Culqi/culqinet/culqinet/culqinet.csproj": {
-                "projectPath": "/Users/admin/Documents/Culqi/culqinet/culqinet/culqinet.csproj"
+              "/Users/admin/Projects/CulqiNet/CulqiNet/CulqiNet.csproj": {
+                "projectPath": "/Users/admin/Projects/CulqiNet/CulqiNet/CulqiNet.csproj"
               }
             }
           }
@@ -122,12 +102,12 @@
         }
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
+        "net7.0": {
+          "targetAlias": "net7.0",
           "dependencies": {
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
-              "version": "[17.1.0, )"
+              "version": "[17.5.0, )"
             },
             "NUnit": {
               "target": "Package",
@@ -135,19 +115,15 @@
             },
             "NUnit.Analyzers": {
               "target": "Package",
-              "version": "[3.3.0, )"
+              "version": "[3.6.1, )"
             },
             "NUnit3TestAdapter": {
               "target": "Package",
-              "version": "[4.2.1, )"
-            },
-            "System.Security.Cryptography.OpenSsl": {
-              "target": "Package",
-              "version": "[5.0.0, )"
+              "version": "[4.4.2, )"
             },
             "coverlet.collector": {
               "target": "Package",
-              "version": "[3.1.2, )"
+              "version": "[3.2.0, )"
             }
           },
           "imports": [

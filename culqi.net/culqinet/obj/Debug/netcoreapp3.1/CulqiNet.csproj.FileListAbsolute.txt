@@ -1,0 +1,5 @@
+/Users/admin/Projects/CulqiNet/CulqiNet/obj/Debug/netcoreapp3.1/CulqiNet.csproj.AssemblyReference.cache
+/Users/admin/Projects/CulqiNet/CulqiNet/obj/Debug/netcoreapp3.1/CulqiNet.GeneratedMSBuildEditorConfig.editorconfig
+/Users/admin/Projects/CulqiNet/CulqiNet/obj/Debug/netcoreapp3.1/CulqiNet.AssemblyInfoInputs.cache
+/Users/admin/Projects/CulqiNet/CulqiNet/obj/Debug/netcoreapp3.1/CulqiNet.AssemblyInfo.cs
+/Users/admin/Projects/CulqiNet/CulqiNet/obj/Debug/netcoreapp3.1/CulqiNet.csproj.CoreCompileInputs.cache

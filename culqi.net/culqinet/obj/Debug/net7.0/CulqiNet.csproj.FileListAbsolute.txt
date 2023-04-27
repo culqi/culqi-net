@@ -1,0 +1,12 @@
+/Users/admin/Projects/CulqiNet/CulqiNet/obj/Debug/net7.0/CulqiNet.csproj.AssemblyReference.cache
+/Users/admin/Projects/CulqiNet/CulqiNet/obj/Debug/net7.0/CulqiNet.GeneratedMSBuildEditorConfig.editorconfig
+/Users/admin/Projects/CulqiNet/CulqiNet/obj/Debug/net7.0/CulqiNet.AssemblyInfoInputs.cache
+/Users/admin/Projects/CulqiNet/CulqiNet/obj/Debug/net7.0/CulqiNet.AssemblyInfo.cs
+/Users/admin/Projects/CulqiNet/CulqiNet/obj/Debug/net7.0/CulqiNet.csproj.CoreCompileInputs.cache
+/Users/admin/Projects/CulqiNet/CulqiNet/bin/Debug/net7.0/CulqiNet.deps.json
+/Users/admin/Projects/CulqiNet/CulqiNet/bin/Debug/net7.0/CulqiNet.dll
+/Users/admin/Projects/CulqiNet/CulqiNet/bin/Debug/net7.0/CulqiNet.pdb
+/Users/admin/Projects/CulqiNet/CulqiNet/obj/Debug/net7.0/CulqiNet.dll
+/Users/admin/Projects/CulqiNet/CulqiNet/obj/Debug/net7.0/refint/CulqiNet.dll
+/Users/admin/Projects/CulqiNet/CulqiNet/obj/Debug/net7.0/CulqiNet.pdb
+/Users/admin/Projects/CulqiNet/CulqiNet/obj/Debug/net7.0/ref/CulqiNet.dll

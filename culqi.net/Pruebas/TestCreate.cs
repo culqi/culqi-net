@@ -26,9 +26,9 @@ namespace culqi.net
 		{
 			security = new Security();
 			security.public_key = "pk_live_889113cd74ecfc55";
-			security.secret_key = "sk_test_1573b0e8079863ff";
-			security.rsa_id = "ac3af62d-f16a-4244-be2a-bbf529f339db";
-			security.rsa_key = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCtTRQ0t+X47DnzsjilcmmRoH1t08OhO5+Q8ZE1gIDchvzYbDW0td5QpUYtiosxNCtR5mzGYNglekd1YH5qp5xJDOlfoUZKVr50M76SZIclu8QdYHSJeXJV1Jyh7hTITxfqgLbQ5U6IZVhnJvnU4LRPpTN3L4OntYkTz/xc3SgwEwIDAQAB";
+			security.secret_key = "sk_live_34a07dcb6d4c7e39";
+			security.rsa_id = "508fc232-0a9d-4fc0-a192-364a0b782b89";
+			security.rsa_key = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDYp0451xITpczkBrl5Goxkh7m1oynj8eDHypIn7HmbyoNJd8cS4OsT850hIDBwYmFuwmxF1YAJS8Cd2nes7fjCHh+7oNqgNKxM2P2NLaeo4Uz6n9Lu4KKSxTiIT7BHiSryC0+Dic91XLH7ZTzrfryxigsc+ZNndv0fQLOW2i6OhwIDAQAB";
         }
 
 		protected static string GetRandomString()
