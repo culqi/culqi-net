@@ -20,16 +20,8 @@ namespace culqinet.util
         public async Task<Dictionary<string, object>> EncryptWithAESRSA(string data, string publicKey, bool isJson)
         {
 
-            var data2 = new
-            {
-                card_number = "4557880621568322",
-                cvv = "958",
-                expiration_month = "07",
-                expiration_year = "2025",
-                email = "alexis.pumayalla@culqi.com"
-            };
             // Serialize the JSON object to a string
-            string jsonData = JsonConvert.SerializeObject(data2);
+            string jsonData = JsonConvert.SerializeObject(data);
 
             // Convert the string to a byte array
             var jsonBytes = Encoding.UTF8.GetBytes(data);
