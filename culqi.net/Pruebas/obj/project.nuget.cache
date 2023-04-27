@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Rzb3vFzmXvzzc3MmRuWiq5a7fa9fM6gDR/uvQro1B0sGEVZPOpULgYGQigxx6JnNC71TDiDtjgAF38es5sbOVg==",
+  "dgSpecHash": "qNX0X+OtCKmJTb1gRGQL8rKLsm3AM6/0bvfJTV+DzqE3C7b8605jnenfX+R4ju9UGYUrbQqbsLd2Dypx0qXICw==",
   "success": true,
-  "projectFilePath": "/Users/admin/Documents/Culqi_Final/culqi-net/culqi.net/Pruebas/Pruebas.csproj",
+  "projectFilePath": "/Users/admin/Projects/CulqiNet/Pruebas/Pruebas.csproj",
   "expectedPackageFiles": [
     "/Users/admin/.nuget/packages/coverlet.collector/3.2.0/coverlet.collector.3.2.0.nupkg.sha512",
     "/Users/admin/.nuget/packages/microsoft.codecoverage/17.5.0/microsoft.codecoverage.17.5.0.nupkg.sha512",

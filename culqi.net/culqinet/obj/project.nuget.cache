@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vEpB7CW7HrSYYFm72lGPt2usIsxgR0O6igiWTvDKcS7ExK2esHe6sqaAd0CP9HWQVYB8G/jt7UYe4vJNaEyiRA==",
+  "dgSpecHash": "zsYwg4cYYlFFLmf66A9zTISPsAt6VsDNnGTnGLYuhBp/qISVoz7YVllsLhqzg71ZLVvtF8hOtUWTrYW8R+6vPQ==",
   "success": true,
-  "projectFilePath": "/Users/admin/Documents/Culqi_Final/culqi-net/culqi.net/CulqiNet/CulqiNet.csproj",
+  "projectFilePath": "/Users/admin/Projects/CulqiNet/CulqiNet/CulqiNet.csproj",
   "expectedPackageFiles": [
     "/Users/admin/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
     "/Users/admin/.nuget/packages/restsharp/110.2.0/restsharp.110.2.0.nupkg.sha512",

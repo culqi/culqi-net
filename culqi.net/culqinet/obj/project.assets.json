@@ -240,11 +240,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/admin/Documents/Culqi_Final/culqi-net/culqi.net/CulqiNet/CulqiNet.csproj",
+      "projectUniqueName": "/Users/admin/Projects/CulqiNet/CulqiNet/CulqiNet.csproj",
       "projectName": "CulqiNet",
-      "projectPath": "/Users/admin/Documents/Culqi_Final/culqi-net/culqi.net/CulqiNet/CulqiNet.csproj",
+      "projectPath": "/Users/admin/Projects/CulqiNet/CulqiNet/CulqiNet.csproj",
       "packagesPath": "/Users/admin/.nuget/packages/",
-      "outputPath": "/Users/admin/Documents/Culqi_Final/culqi-net/culqi.net/CulqiNet/obj/",
+      "outputPath": "/Users/admin/Projects/CulqiNet/CulqiNet/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/admin/.nuget/NuGet/NuGet.Config"
