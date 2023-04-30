@@ -79,13 +79,9 @@ namespace culqinet.util
                             { "encrypted_iv", encryptedIvToJson }
                         };
 
-
-
-
         }
 
     }
-
     
 }
 
