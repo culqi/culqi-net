@@ -1,24 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="RestSharp" />
-    <None Remove="test\" />
-    <None Remove="Newtonsoft.Json" />
-    <None Remove="NUnit" />
-    <None Remove="Microsoft.VisualStudio.UnitTesting" />
+    <None Remove="model\" />
+    <None Remove="util\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="RestSharp" Version="108.0.3" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
-    <PackageReference Include="NUnit" Version="3.13.3" />
-    <PackageReference Include="Microsoft.VisualStudio.UnitTesting" Version="11.0.50727.1" />
+    <Folder Include="model\" />
+    <Folder Include="util\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="test\" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="RestSharp" Version="110.2.0" />
   </ItemGroup>
 </Project>

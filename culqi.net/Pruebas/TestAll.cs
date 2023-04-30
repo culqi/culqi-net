@@ -18,17 +18,18 @@ namespace culqi.net
 		public TestAll()
 		{
 			security = new Security();
-			security.public_key = "pk_test_90667d0a57d45c48";
-			security.secret_key = "sk_test_1573b0e8079863ff";
-		}
+            security.public_key = "pk_live_889113cd74ecfc55";
+            security.secret_key = "sk_live_34a07dcb6d4c7e39";
+        }
 
 		[Test]
-		public void allTokens()
+		public void Test01_AllTokens()
 		{	
 			string tokens = new Token(security).List(filter);
 			JObject json_tokens = JObject.Parse(tokens);
 			List<Dictionary<string, object>>  data =  json_tokens["data"].ToObject<List<Dictionary<string, object>>>();
-			bool valid = true;
+			bool valid = false;
+			Console.WriteLine(data);
 			if (data.Count >= 0)
 			{
 				valid = true;
@@ -37,7 +38,7 @@ namespace culqi.net
 		}
 
 		[Test]
-		public void allCharges()
+		public void Test02_AllCharges()
 		{
 			string charges = new Charge(security).List(filter);
 			JObject json_charges = JObject.Parse(charges);
@@ -51,7 +52,7 @@ namespace culqi.net
 		}
 
         [Test]
-        public void allOrders()
+        public void Test03_AllOrders()
         {
             string orders = new Order(security).List(filter);
             JObject json_charges = JObject.Parse(orders);
@@ -65,7 +66,7 @@ namespace culqi.net
         }
 
         [Test]
-		public void allPlans()
+		public void Test04_AllPlans()
 		{
 			string plans = new Plan(security).List(filter);
 			JObject json_plans = JObject.Parse(plans);
@@ -79,7 +80,7 @@ namespace culqi.net
 		}
 
 		[Test]
-		public void allSubscriptions()
+		public void Test05_AllSubscriptions()
 		{
 			string subscriptions = new Subscription(security).List(filter);
 			JObject json_subscriptions = JObject.Parse(subscriptions);
@@ -93,7 +94,7 @@ namespace culqi.net
 		}
 
 		[Test]
-		public void allCards()
+		public void Test06_AllCards()
 		{
 			string cards = new Card(security).List(filter);
 			JObject json_cards = JObject.Parse(cards);
@@ -107,7 +108,7 @@ namespace culqi.net
 		}
 
 		[Test]
-		public void allCustomers()
+		public void Test07_AllCustomers()
 		{
 			string customers = new Customer(security).List(filter);
 			JObject json_customers = JObject.Parse(customers);
@@ -121,7 +122,7 @@ namespace culqi.net
 		}
 
 		[Test]
-		public void allTransfers()
+		public void Test08_AllTransfers()
 		{
 			string transfers = new Transfer(security).List(filter);
 			JObject json_transfers = JObject.Parse(transfers);
@@ -135,7 +136,7 @@ namespace culqi.net
 		}
 
 		[Test]
-		public void allRefunds()
+		public void Test09_AllRefunds()
 		{
 			string refunds = new Refund(security).List(filter);
 			var json_refunds = JObject.Parse(refunds);
