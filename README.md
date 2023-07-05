@@ -1,10 +1,29 @@
 # culqi-net
-Una implementación de Culqi para .NET
+
+Nuestra Biblioteca .NET oficial de CULQI, es compatible con la [v2.0](https://culqi.com/api/) del Culqi API, con el cual tendrás la posibilidad de realizar cobros con tarjetas de débito y crédito, Yape, PagoEfectivo, billeteras móviles y Cuotéalo con solo unos simples pasos de configuración.
 
 ## Requisitos
 
 - NET Core 4.*
 - Credenciales de comercio en Culqi (1).
+* Si vas a realizar pruebas obtén tus llaves desde [aquí](https://integ-panel.culqi.com/#/registro), si vas a realizar transacciones reales obtén tus llaves desde [aquí](https://panel.culqi.com/#/registro) (1).
+
+> Recuerda que para obtener tus llaves debes ingresar a tu CulqiPanel > Desarrollo > ***API Keys***.
+
+![alt tag](http://i.imgur.com/NhE6mS9.png)
+
+> Recuerda que las credenciales son enviadas al correo que registraste en el proceso de afiliación.
+
+## Configuración
+
+Como primer paso hay que configurar las credenciales (pk y sk)
+
+```cs
+Security security = new Security();
+security.public_key = "{LLAVE PUBLICA}";
+security.secret_key = "{LLAVE SECRETA}";
+```
+> Recuerda que las llaves de integración se identifican como "test" y las de producción como "live".
 
 ## Ejemplos
 
@@ -19,13 +38,7 @@ protected static string GetRandomString()
 }
 ```
 
-#### Inicialización
 
-```cs
-Security security = new Security();
-security.public_key = "{LLAVE PUBLICA}";
-security.secret_key = "{LLAVE SECRETA}";
-```
 
 #### Crear Token
 
@@ -38,7 +51,7 @@ Dictionary<string, object> token = new Dictionary<string, object>
 	{"expiration_year", 2020},
 	{"email", "wmuro@me.com"}
 };
-string token_created = new Token(security).Create(token);
+new Token(security).Create(token);
 ```
 
 
@@ -64,7 +77,7 @@ Dictionary<string, object> charge = new Dictionary<string, object>
 	{"source_id", (string)json_token["id"]}
 };
 
-string charge_created = new Charge(security).Create(charge);
+new Charge(security).Create(charge);
 ```
 
 #### Crear Plan
@@ -87,7 +100,7 @@ Dictionary<string, object> plan = new Dictionary<string, object>
 	{"trial_days", 15}
 };
 
-string plan_created = new Plan(security).Create(plan);
+new Plan(security).Create(plan);
 ```
 
 #### Crear Cliente
@@ -104,7 +117,7 @@ Dictionary<string, object> customer = new Dictionary<string, object>
 	{"phone_number", 99004356}
 };
 
-string customer_created = new Customer(security).Create(customer);
+new Customer(security).Create(customer);
 ```
 
 #### Crear Tarjeta
@@ -118,7 +131,7 @@ Dictionary<string, object> card = new Dictionary<string, object>
 	{"token_id", (string)json_token["id"]}
 };
 
-string card_created = new Card(security).Create(card);
+new Card(security).Create(card);
 ```
 
 #### Crear Suscripción
@@ -133,7 +146,7 @@ Dictionary<string, object> subscription = new Dictionary<string, object>
 	{"plan_id", (string)json_plan["id"]}
 };
 
-string subscription_created = new Subscription(security).Create(subscription);
+new Subscription(security).Create(subscription);
 ```
 
 #### Crear Devolución
@@ -156,7 +169,7 @@ return new Refund(security).Create(refund);
 
 ## Autor
 
-Willy Aguirre ([@marti1125](https://github.com/marti1125) - Team Culqi)
+Team Culqi
 
 ## Licencia
 
