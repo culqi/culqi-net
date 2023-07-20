@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text.Json.Nodes;
 using System.Xml.Linq;
+using Newtonsoft.Json;
 using RestSharp;
 namespace culqi.net
 {
@@ -83,7 +84,8 @@ namespace culqi.net
                     request.AddJsonBody(model);
                 }
             }
-
+            //string output = JsonConvert.SerializeObject(model);
+            //Console.WriteLine(output);
             request.AddHeader("Content-Type", "application/json");
             request.AddHeader("Authorization", "Bearer " + api_key);
             if (rsa_id != null)

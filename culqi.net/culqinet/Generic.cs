@@ -52,7 +52,8 @@ namespace culqi.net
             // Llamada a la función EncryptWithAESRSAAsync
             var encryptedResultTask = encrypt.EncryptWithAESRSA(jsonString, rsa_key, true);
             // Esperar a que la tarea se complete y obtener el resultado usando la propiedad Result
-            var encryptedResult = encryptedResultTask.Result;
+            var encryptedResult = encryptedResultTask;//.Result;
+            Console.WriteLine(encryptedResult);
             body = encryptedResult;
             return new RequestCulqi().Request(body, URL, api_key, "post", rsa_id);
         }
@@ -74,7 +75,7 @@ namespace culqi.net
             // Llamada a la función EncryptWithAESRSAAsync
             var encryptedResultTask = encrypt.EncryptWithAESRSA(jsonString, rsa_key, true);
             // Esperar a que la tarea se complete y obtener el resultado usando la propiedad Result
-            var encryptedResult = encryptedResultTask.Result;
+            var encryptedResult = encryptedResultTask;//.Result;
             body = encryptedResult;
             return new RequestCulqi().Request(body, URL + id + "/", security.secret_key, "patch", rsa_id);
         }
