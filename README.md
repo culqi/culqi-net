@@ -25,6 +25,21 @@ security.secret_key = "{LLAVE SECRETA}";
 ```
 > Recuerda que las llaves de integración se identifican como "test" y las de producción como "live".
 
+## Encriptar payload
+
+Para encriptar el payload necesitas crear un id RSA y llave RSA, para esto debes ingresa a tu panel y hacer click en la sección “Desarrollo / RSA Keys” de la barra de navegación a la mano izquierda.
+
+Luego declara en variables el id RSA y llave RSA en tu backend, y envialo en las funciones de la librería.
+
+Ejemplo
+
+```c#
+security.rsa_id = "la llave pública RSA";
+security.rsa_key = "el id de tu llave"
+
+return new Token(security).Create(jsonData.JsonToken(), security.rsa_id, security.rsa_key);
+```
+
 ## Ejemplos
 
 #### Generar nombres aleatorios
