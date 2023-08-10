@@ -34,8 +34,8 @@ Luego declara en variables el id RSA y llave RSA en tu backend, y envialo en las
 Ejemplo
 
 ```c#
-security.rsa_id = "la llave pública RSA";
-security.rsa_key = "el id de tu llave"
+security.rsa_id = "el id de tu llave";
+security.rsa_key = "la llave pública RSA"
 
 return new Token(security).Create(jsonData.JsonToken(), security.rsa_id, security.rsa_key);
 ```
