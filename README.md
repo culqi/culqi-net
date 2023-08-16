@@ -184,13 +184,18 @@ En la caperta **/test** econtraras ejemplo para crear un token, charge,plan, ór
 ```
 
 ## Documentación
-¿Necesitas más información para integrar `culqi-net`? La documentación completa se encuentra en [https://culqi.com/docs/](https://culqi.com/docs/)
+
+- [Referencia de API](https://apidocs.culqi.com/)
+- [Demo Checkout V4 + Culqi 3DS]([https://github.com/culqi/culqi-python-demo-checkoutv4-culqi3ds](https://github.com/culqi/culqi-net_framework))
+- [Wiki](https://github.com/culqi/culqi-python/wiki)
+
+## Changelog
+
+Todos los cambios en las versiones de esta biblioteca están listados en
+[CHANGELOG.md](CHANGELOG.md).
 
 ## Autor
-
-Willy Aguirre ([@marti1125](https://github.com/marti1125) - Team Culqi)
+Team Culqi
 
 ## Licencia
-
-El código fuente de culqi-net está distribuido bajo MIT License, revisar el archivo
-[LICENSE](https://github.com/culqi/culqi-net/blob/master/LICENSE).
+El código fuente de culqi-python está distribuido bajo MIT License, revisar el archivo LICENSE.
