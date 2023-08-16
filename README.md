@@ -186,7 +186,7 @@ En la caperta **/test** econtraras ejemplo para crear un token, charge,plan, ór
 ## Documentación
 
 - [Referencia de API](https://apidocs.culqi.com/)
-- [Demo Checkout V4 + Culqi 3DS]([https://github.com/culqi/culqi-python-demo-checkoutv4-culqi3ds](https://github.com/culqi/culqi-net_framework))
+- [Demo Checkout V4 + Culqi 3DS]([[https://github.com/culqi/culqi-python-demo-checkoutv4-culqi3ds](https://github.com/culqi/culqi-netcore-demo-checkoutv4-culqi3ds)]([https://github.com/culqi/culqi-net_framework](https://github.com/culqi/culqi-netcore-demo-checkoutv4-culqi3ds)))
 - [Wiki](https://github.com/culqi/culqi-python/wiki)
 
 ## Changelog
