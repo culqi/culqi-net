@@ -1,7 +1,7 @@
 # culqi-net
-Nuestra Biblioteca NET CORE oficial de CULQI, es compatible con la v2.0 del Culqi API, con el cual tendrás la posibilidad de realizar cobros con tarjetas de débito y crédito, Yape, PagoEfectivo, billeteras móviles y Cuotéalo con solo unos simples pasos de configuración.
+Nuestra Biblioteca NET CORE oficial, es compatible con la v2.0 del Culqi API, con el cual tendrás la posibilidad de realizar cobros con tarjetas de débito y crédito, Yape, PagoEfectivo, billeteras móviles y Cuotéalo con solo unos simples pasos de configuración.
 
-Nuestra biblioteca te da la posibilidad de capturar el `status_code` de la solicitud HTTP que se realiza al API de Culqi, asi como el `response` que contiene el cuerpo de la respuesta obtenida.
+Nuestra biblioteca te da la posibilidad de capturar el `status_code` de la solicitud HTTP que se realiza al API de Culqi, así como el `response` que contiene el cuerpo de la respuesta obtenida.
 
 ## Requisitos
 
@@ -15,7 +15,7 @@ Nuestra biblioteca te da la posibilidad de capturar el `status_code` de la solic
 
 > Recuerda que las credenciales son enviadas al correo que registraste en el proceso de afiliación.
 
-* Para encriptar el payload debes generar un id y llave RSA  ingresando a CulqiPanel > Desarrollo  > RSA Keys
+* Para encriptar el payload debes generar un id y llave RSA  ingresando a CulqiPanel > Desarrollo  > RSA Keys.
   
 ## Instalación
 
@@ -26,7 +26,6 @@ Install-Package RestSharp
 Install-Package Newtonsoft.Json
 ```
 
-
 ## Configuracion
 
 Para empezar a enviar peticiones al API de Culqi debes configurar tu llave pública (pk), llave privada (sk). Para habilitar encriptación de payload debes configurar tu rsa_id y rsa_public_key.
@@ -36,26 +35,25 @@ security = new Security();
 security.public_key = "pk_test_e94078b9b248675d";
 security.secret_key = "sk_test_c2267b5b262745f0";
 security.rsa_id = "de35e120-e297-4b96-97ef-10a43423ddec";
-
 security.rsa_key = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDswQycch0x/7GZ0oFojkWCYv+gr5CyfBKXc3Izq+btIEMCrkDrIsz4Lnl5E3FSD7/htFn1oE84SaDKl5DgbNoev3pMC7MDDgdCFrHODOp7aXwjG8NaiCbiymyBglXyEN28hLvgHpvZmAn6KFo0lMGuKnz8HiuTfpBl6HpD6+02SQIDAQAB";
-
 ```
 
 ### Encriptar payload
 
-Para encriptar el payload necesitas agregar el parámetros que contiene tu id y llave RSA.
+Para encriptar el payload necesitas enviar tu id y llave RSA.
 
 Ejemplo
 
-```python
-  public ResponseCulqi CreateTokenEncrypt()
-    {
-        return new Token(security).Create(jsonData.JsonToken(), security.rsa_id, security.rsa_key);
-    }
-
+```cs
+public ResponseCulqi CreateTokenEncrypt()
+{
+	return new Token(security).Create(jsonData.JsonToken(), security.rsa_id, security.rsa_key);
+}
 ```
 
-#### Crear Token
+## Ejemplos
+
+### Crear Token
 
 ```cs
 Dictionary<string, object> token = new Dictionary<string, object>
@@ -63,14 +61,14 @@ Dictionary<string, object> token = new Dictionary<string, object>
 	{"card_number", "4111111111111111"},
 	{"cvv", "123"},
 	{"expiration_month", 9},
-	{"expiration_year", 2020},
-	{"email", "wmuro@me.com"}
+	{"expiration_year", 2025},
+	{"email", "pruebas123@me.com"}
 };
 string token_created = new Token(security).Create(token);
 ```
 
 
-#### Crear Cargo
+### Crear Cargo
 
 ```cs
 var json_token = JObject.Parse(token_created);
@@ -95,7 +93,7 @@ Dictionary<string, object> charge = new Dictionary<string, object>
 string charge_created = new Charge(security).Create(charge);
 ```
 
-#### Crear Plan
+### Crear Plan
 
 ```cs
 Dictionary<string, object> metadata = new Dictionary<string, object>
@@ -118,7 +116,7 @@ Dictionary<string, object> plan = new Dictionary<string, object>
 string plan_created = new Plan(security).Create(plan);
 ```
 
-#### Crear Cliente
+### Crear Cliente
 
 ```cs
 Dictionary<string, object> customer = new Dictionary<string, object>
@@ -135,7 +133,7 @@ Dictionary<string, object> customer = new Dictionary<string, object>
 string customer_created = new Customer(security).Create(customer);
 ```
 
-#### Crear Tarjeta
+### Crear Tarjeta
 
 ```cs
 var json_customer = JObject.Parse(customer_created);
@@ -149,7 +147,7 @@ Dictionary<string, object> card = new Dictionary<string, object>
 string card_created = new Card(security).Create(card);
 ```
 
-#### Crear Suscripción
+### Crear Suscripción
 
 ```cs
 var json_plan = JObject.Parse(plan_created);
@@ -164,7 +162,7 @@ Dictionary<string, object> subscription = new Dictionary<string, object>
 string subscription_created = new Subscription(security).Create(subscription);
 ```
 
-#### Crear Devolución
+### Crear Devolución
 
 ```cs
 var json_charge = JObject.Parse(charge_created);
@@ -181,7 +179,7 @@ return new Refund(security).Create(refund);
 
 ## Pruebas
 
-En la caperta **/test** econtraras ejemplo para crear un token, charge,plan, órdenes, card, suscupciones, etc.
+En la caperta **/Pruebas** encontraras ejemplos para crear un token, charge, plan, órdenes, card, suscripciones, etc.
 
 > Recuerda que si quieres probar tu integración, puedes utilizar nuestras [tarjetas de prueba.](https://docs.culqi.com/es/documentacion/pagos-online/tarjetas-de-prueba/)
 
@@ -191,13 +189,20 @@ En la caperta **/test** econtraras ejemplo para crear un token, charge,plan, ór
  string data = culqiCRUD.CreateToken().body;
  var json_object = JObject.Parse(data);
  Assert.AreEqual("token",(string)json_object["object"]);
+```
 
+### Ejemplo Prueba Cargo
+
+```cs
+ string data = culqiCRUD.CreateCharge().body;
+var json_object = JObject.Parse(data);
+Assert.AreEqual("charge", (string)json_object["object"]);
 ```
 
 ## Documentación
 
 - [Referencia de API](https://apidocs.culqi.com/)
-- [Demo Checkout V4 + Culqi 3DS]([[https://github.com/culqi/culqi-python-demo-checkoutv4-culqi3ds](https://github.com/culqi/culqi-netcore-demo-checkoutv4-culqi3ds)]([https://github.com/culqi/culqi-net_framework](https://github.com/culqi/culqi-netcore-demo-checkoutv4-culqi3ds)))
+- [Demo Checkout V4 + Culqi 3DS]([[https://github.com/culqi/culqi-netcore-demo-checkoutv4-culqi3ds](https://github.com/culqi/culqi-netcore-demo-checkoutv4-culqi3ds)]([https://github.com/culqi/culqi-net_framework](https://github.com/culqi/culqi-netcore-demo-checkoutv4-culqi3ds)))
 - [Wiki](https://github.com/culqi/culqi-python/wiki)
 
 ## Changelog
