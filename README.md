@@ -1,12 +1,13 @@
 # culqi-net
+Nuestra Biblioteca NET CORE oficial, es compatible con la v2.0 del Culqi API, con el cual tendrás la posibilidad de realizar cobros con tarjetas de débito y crédito, Yape, PagoEfectivo, billeteras móviles y Cuotéalo con solo unos simples pasos de configuración.
 
-Nuestra Biblioteca .NET oficial de CULQI, es compatible con la [v2.0](https://culqi.com/api/) del Culqi API, con el cual tendrás la posibilidad de realizar cobros con tarjetas de débito y crédito, Yape, PagoEfectivo, billeteras móviles y Cuotéalo con solo unos simples pasos de configuración.
+Nuestra biblioteca te da la posibilidad de capturar el `status_code` de la solicitud HTTP que se realiza al API de Culqi, así como el `response` que contiene el cuerpo de la respuesta obtenida.
 
 ## Requisitos
 
 - NET Core 4.*
-- Credenciales de comercio en Culqi (1).
-* Si vas a realizar pruebas obtén tus llaves desde [aquí](https://integ-panel.culqi.com/#/registro), si vas a realizar transacciones reales obtén tus llaves desde [aquí](https://panel.culqi.com/#/registro) (1).
+* Afiliate [aquí](https://afiliate.culqi.com/).
+* Si vas a realizar pruebas obtén tus llaves desde [aquí](https://integ-panel.culqi.com/#/registro), si vas a realizar transacciones reales obtén tus llaves desde [aquí](https://panel.culqi.com/#/registro).
 
 > Recuerda que para obtener tus llaves debes ingresar a tu CulqiPanel > Desarrollo > ***API Keys***.
 
@@ -14,48 +15,45 @@ Nuestra Biblioteca .NET oficial de CULQI, es compatible con la [v2.0](https://cu
 
 > Recuerda que las credenciales son enviadas al correo que registraste en el proceso de afiliación.
 
-## Configuración
+* Para encriptar el payload debes generar un id y llave RSA  ingresando a CulqiPanel > Desarrollo  > RSA Keys.
+  
+## Instalación
 
-Como primer paso hay que configurar las credenciales (pk y sk)
+Ejecuta los siguientes comandos usando la consola de comandos NuGet:
+
+```bash
+Install-Package RestSharp
+Install-Package Newtonsoft.Json
+```
+
+## Configuracion
+
+Para empezar a enviar peticiones al API de Culqi debes configurar tu llave pública (pk), llave privada (sk). Para habilitar encriptación de payload debes configurar tu rsa_id y rsa_public_key.
 
 ```cs
-Security security = new Security();
-security.public_key = "{LLAVE PUBLICA}";
-security.secret_key = "{LLAVE SECRETA}";
+security = new Security();
+security.public_key = "pk_test_e94078b9b248675d";
+security.secret_key = "sk_test_c2267b5b262745f0";
+security.rsa_id = "de35e120-e297-4b96-97ef-10a43423ddec";
+security.rsa_key = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDswQycch0x/7GZ0oFojkWCYv+gr5CyfBKXc3Izq+btIEMCrkDrIsz4Lnl5E3FSD7/htFn1oE84SaDKl5DgbNoev3pMC7MDDgdCFrHODOp7aXwjG8NaiCbiymyBglXyEN28hLvgHpvZmAn6KFo0lMGuKnz8HiuTfpBl6HpD6+02SQIDAQAB";
 ```
-> Recuerda que las llaves de integración se identifican como "test" y las de producción como "live".
 
-## Encriptar payload
+### Encriptar payload
 
-Para encriptar el payload necesitas crear un id RSA y llave RSA, para esto debes ingresa a tu panel y hacer click en la sección “Desarrollo / RSA Keys” de la barra de navegación a la mano izquierda.
-
-Luego declara en variables el id RSA y llave RSA en tu backend, y envialo en las funciones de la librería.
+Para encriptar el payload necesitas enviar tu id y llave RSA.
 
 Ejemplo
 
-```c#
-security.rsa_id = "el id de tu llave";
-security.rsa_key = "la llave pública RSA"
-
-return new Token(security).Create(jsonData.JsonToken(), security.rsa_id, security.rsa_key);
+```cs
+public ResponseCulqi CreateTokenEncrypt()
+{
+	return new Token(security).Create(jsonData.JsonToken(), security.rsa_id, security.rsa_key);
+}
 ```
 
 ## Ejemplos
 
-#### Generar nombres aleatorios
-
-```cs
-protected static string GetRandomString()
-{
-	string path = Path.GetRandomFileName();
-	path = path.Replace(".", "");
-	return path;
-}
-```
-
-
-
-#### Crear Token
+### Crear Token
 
 ```cs
 Dictionary<string, object> token = new Dictionary<string, object>
@@ -63,14 +61,14 @@ Dictionary<string, object> token = new Dictionary<string, object>
 	{"card_number", "4111111111111111"},
 	{"cvv", "123"},
 	{"expiration_month", 9},
-	{"expiration_year", 2020},
-	{"email", "wmuro@me.com"}
+	{"expiration_year", 2025},
+	{"email", "pruebas123@me.com"}
 };
-new Token(security).Create(token);
+string token_created = new Token(security).Create(token);
 ```
 
 
-#### Crear Cargo
+### Crear Cargo
 
 ```cs
 var json_token = JObject.Parse(token_created);
@@ -92,10 +90,10 @@ Dictionary<string, object> charge = new Dictionary<string, object>
 	{"source_id", (string)json_token["id"]}
 };
 
-new Charge(security).Create(charge);
+string charge_created = new Charge(security).Create(charge);
 ```
 
-#### Crear Plan
+### Crear Plan
 
 ```cs
 Dictionary<string, object> metadata = new Dictionary<string, object>
@@ -115,10 +113,10 @@ Dictionary<string, object> plan = new Dictionary<string, object>
 	{"trial_days", 15}
 };
 
-new Plan(security).Create(plan);
+string plan_created = new Plan(security).Create(plan);
 ```
 
-#### Crear Cliente
+### Crear Cliente
 
 ```cs
 Dictionary<string, object> customer = new Dictionary<string, object>
@@ -132,10 +130,10 @@ Dictionary<string, object> customer = new Dictionary<string, object>
 	{"phone_number", 99004356}
 };
 
-new Customer(security).Create(customer);
+string customer_created = new Customer(security).Create(customer);
 ```
 
-#### Crear Tarjeta
+### Crear Tarjeta
 
 ```cs
 var json_customer = JObject.Parse(customer_created);
@@ -146,10 +144,10 @@ Dictionary<string, object> card = new Dictionary<string, object>
 	{"token_id", (string)json_token["id"]}
 };
 
-new Card(security).Create(card);
+string card_created = new Card(security).Create(card);
 ```
 
-#### Crear Suscripción
+### Crear Suscripción
 
 ```cs
 var json_plan = JObject.Parse(plan_created);
@@ -161,10 +159,10 @@ Dictionary<string, object> subscription = new Dictionary<string, object>
 	{"plan_id", (string)json_plan["id"]}
 };
 
-new Subscription(security).Create(subscription);
+string subscription_created = new Subscription(security).Create(subscription);
 ```
 
-#### Crear Devolución
+### Crear Devolución
 
 ```cs
 var json_charge = JObject.Parse(charge_created);
@@ -179,14 +177,41 @@ Dictionary<string, object> refund = new Dictionary<string, object>
 return new Refund(security).Create(refund);
 ```
 
+## Pruebas
+
+En la caperta **/Pruebas** encontraras ejemplos para crear un token, charge, plan, órdenes, card, suscripciones, etc.
+
+> Recuerda que si quieres probar tu integración, puedes utilizar nuestras [tarjetas de prueba.](https://docs.culqi.com/es/documentacion/pagos-online/tarjetas-de-prueba/)
+
+### Ejemplo Prueba Token
+
+```cs
+ string data = culqiCRUD.CreateToken().body;
+ var json_object = JObject.Parse(data);
+ Assert.AreEqual("token",(string)json_object["object"]);
+```
+
+### Ejemplo Prueba Cargo
+
+```cs
+ string data = culqiCRUD.CreateCharge().body;
+var json_object = JObject.Parse(data);
+Assert.AreEqual("charge", (string)json_object["object"]);
+```
+
 ## Documentación
-¿Necesitas más información para integrar `culqi-net`? La documentación completa se encuentra en [https://culqi.com/docs/](https://culqi.com/docs/)
+
+- [Referencia de API](https://apidocs.culqi.com/)
+- [Demo Checkout V4 + Culqi 3DS]([[https://github.com/culqi/culqi-netcore-demo-checkoutv4-culqi3ds](https://github.com/culqi/culqi-netcore-demo-checkoutv4-culqi3ds)]([https://github.com/culqi/culqi-net_framework](https://github.com/culqi/culqi-netcore-demo-checkoutv4-culqi3ds)))
+- [Wiki](https://github.com/culqi/culqi-python/wiki)
+
+## Changelog
+
+Todos los cambios en las versiones de esta biblioteca están listados en
+[CHANGELOG.md](CHANGELOG.md).
 
 ## Autor
-
 Team Culqi
 
 ## Licencia
-
-El código fuente de culqi-net está distribuido bajo MIT License, revisar el archivo
-[LICENSE](https://github.com/culqi/culqi-net/blob/master/LICENSE).
+El código fuente de culqi-net está distribuido bajo MIT License, revisar el archivo LICENSE.
