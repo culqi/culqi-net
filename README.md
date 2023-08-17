@@ -6,9 +6,16 @@ Nuestra biblioteca te da la posibilidad de capturar el `status_code` de la solic
 ## Requisitos
 
 - NET Core 4.*
-- Credenciales de comercio en Culqi (1).
+* Afiliate [aquí](https://afiliate.culqi.com/).
+* Si vas a realizar pruebas obtén tus llaves desde [aquí](https://integ-panel.culqi.com/#/registro), si vas a realizar transacciones reales obtén tus llaves desde [aquí](https://panel.culqi.com/#/registro).
 
-- 
+> Recuerda que para obtener tus llaves debes ingresar a tu CulqiPanel > Desarrollo > ***API Keys***.
+
+![alt tag](http://i.imgur.com/NhE6mS9.png)
+
+> Recuerda que las credenciales son enviadas al correo que registraste en el proceso de afiliación.
+
+* Para encriptar el payload debes generar un id y llave RSA  ingresando a CulqiPanel > Desarrollo  > RSA Keys
   
 ## Instalación
 
