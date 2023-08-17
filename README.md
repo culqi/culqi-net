@@ -33,17 +33,17 @@ Para empezar a enviar peticiones al API de Culqi debes configurar tu llave públ
 
 ```cs
 security = new Security();
-        security.public_key = "pk_test_e94078b9b248675d";
-        security.secret_key = "sk_test_c2267b5b262745f0";
-        security.rsa_id = "de35e120-e297-4b96-97ef-10a43423ddec";
+security.public_key = "pk_test_e94078b9b248675d";
+security.secret_key = "sk_test_c2267b5b262745f0";
+security.rsa_id = "de35e120-e297-4b96-97ef-10a43423ddec";
 
-        security.rsa_key = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDswQycch0x/7GZ0oFojkWCYv+gr5CyfBKXc3Izq+btIEMCrkDrIsz4Lnl5E3FSD7/htFn1oE84SaDKl5DgbNoev3pMC7MDDgdCFrHODOp7aXwjG8NaiCbiymyBglXyEN28hLvgHpvZmAn6KFo0lMGuKnz8HiuTfpBl6HpD6+02SQIDAQAB";
+security.rsa_key = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDswQycch0x/7GZ0oFojkWCYv+gr5CyfBKXc3Izq+btIEMCrkDrIsz4Lnl5E3FSD7/htFn1oE84SaDKl5DgbNoev3pMC7MDDgdCFrHODOp7aXwjG8NaiCbiymyBglXyEN28hLvgHpvZmAn6KFo0lMGuKnz8HiuTfpBl6HpD6+02SQIDAQAB";
 
 ```
 
 ### Encriptar payload
 
-Para encriptar el payload necesitas agregar el parámetros **options** que contiene tu id y llave RSA.
+Para encriptar el payload necesitas agregar el parámetros que contiene tu id y llave RSA.
 
 Ejemplo
 
@@ -209,4 +209,4 @@ Todos los cambios en las versiones de esta biblioteca están listados en
 Team Culqi
 
 ## Licencia
-El código fuente de culqi-python está distribuido bajo MIT License, revisar el archivo LICENSE.
+El código fuente de culqi-net está distribuido bajo MIT License, revisar el archivo LICENSE.
