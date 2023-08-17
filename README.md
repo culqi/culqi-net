@@ -33,17 +33,17 @@ Para empezar a enviar peticiones al API de Culqi debes configurar tu llave públ
 
 ```cs
 security = new Security();
-        security.public_key = "INSERTE_SU_LLAVE_PUBLICA";
-        security.secret_key = "INSERTE_SU_LLAVE_PRIVADA";
-        security.rsa_id = "INSERTE_SU_RSA_ID";
+security.public_key = "INSERTE_SU_LLAVE_PUBLICA";
+security.secret_key = "INSERTE_SU_LLAVE_PRIVADA";
+security.rsa_id = "INSERTE_SU_RSA_ID";
 
-        security.rsa_key = "INSERTE_SU_LLAVE_RSA";
+security.rsa_key = "INSERTE_SU_LLAVE_RSA";
 
 ```
 
 ### Encriptar payload
 
-Para encriptar el payload necesitas agregar el parámetros **options** que contiene tu id y llave RSA.
+Para encriptar el payload necesitas agregar el parámetros que contiene tu id y llave RSA.
 
 Ejemplo
 
@@ -209,4 +209,4 @@ Todos los cambios en las versiones de esta biblioteca están listados en
 Team Culqi
 
 ## Licencia
-El código fuente de culqi-python está distribuido bajo MIT License, revisar el archivo LICENSE.
+El código fuente de culqi-net está distribuido bajo MIT License, revisar el archivo LICENSE.
