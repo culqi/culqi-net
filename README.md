@@ -202,7 +202,7 @@ Assert.AreEqual("charge", (string)json_object["object"]);
 ## Documentación
 
 - [Referencia de API](https://apidocs.culqi.com/)
-- [Demo Checkout V4 + Culqi 3DS]([[https://github.com/culqi/culqi-netcore-demo-checkoutv4-culqi3ds](https://github.com/culqi/culqi-netcore-demo-checkoutv4-culqi3ds)]([https://github.com/culqi/culqi-net_framework](https://github.com/culqi/culqi-netcore-demo-checkoutv4-culqi3ds)))
+- [Demo Checkout V4 + Culqi 3DS](https://github.com/culqi/culqi-netcore-demo-checkoutv4-culqi3ds)
 - [Wiki](https://github.com/culqi/culqi-python/wiki)
 
 ## Changelog
