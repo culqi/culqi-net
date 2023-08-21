@@ -121,33 +121,6 @@ Dictionary<string, object> refund = new Dictionary<string, object>
 return new Refund(security).Create(refund);
 ```
 
-### Crear Plan
-
-El plan es un servicio que te permite definir con qué frecuencia deseas realizar cobros a tus clientes.
-
-Un plan define el comportamiento de las suscripciones. Los planes pueden ser creados vía el [API de Plan](https://apidocs.culqi.com/#/planes#create) o desde el **CulqiPanel**.
-
-```cs
-Dictionary<string, object> metadata = new Dictionary<string, object>
-{
-	{"alias", "plan-test"}
-};
-
-Dictionary<string, object> plan = new Dictionary<string, object>
-{
-	{"amount", 10000},
-	{"currency_code", "PEN"},
-	{"interval", "dias"},
-	{"interval_count", 15},
-	{"limit", 2},
-	{"metadata", metadata},
-	{"name", "plan-culqi-"+GetRandomString()},
-	{"trial_days", 15}
-};
-
-string plan_created = new Plan(security).Create(plan);
-```
-
 ### Crear Cliente
 
 El **cliente** es un servicio que te permite guardar la información de tus clientes. Es un paso necesario para generar una [tarjeta](/es/documentacion/pagos-online/recurrencia/one-click/tarjetas).
@@ -185,6 +158,32 @@ Dictionary<string, object> card = new Dictionary<string, object>
 };
 
 string card_created = new Card(security).Create(card);
+```
+### Crear Plan
+
+El plan es un servicio que te permite definir con qué frecuencia deseas realizar cobros a tus clientes.
+
+Un plan define el comportamiento de las suscripciones. Los planes pueden ser creados vía el [API de Plan](https://apidocs.culqi.com/#/planes#create) o desde el **CulqiPanel**.
+
+```cs
+Dictionary<string, object> metadata = new Dictionary<string, object>
+{
+	{"alias", "plan-test"}
+};
+
+Dictionary<string, object> plan = new Dictionary<string, object>
+{
+	{"amount", 10000},
+	{"currency_code", "PEN"},
+	{"interval", "dias"},
+	{"interval_count", 15},
+	{"limit", 2},
+	{"metadata", metadata},
+	{"name", "plan-culqi-"+GetRandomString()},
+	{"trial_days", 15}
+};
+
+string plan_created = new Plan(security).Create(plan);
 ```
 
 ### Crear Suscripción
