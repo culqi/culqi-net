@@ -1,10 +1,10 @@
-### 0.1 05-01-2017
+### 0.0.2 15-08-2023
 
 - Source code improvements
 - Add HTTP status code
 - Add RSA encrypt
 
-### 0.1 05-01-2017
+### 0.0.1 05-01-2023
 
 - Create Token
 - Create Charge
