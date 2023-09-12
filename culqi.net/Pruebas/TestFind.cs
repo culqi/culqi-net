@@ -17,9 +17,9 @@ namespace culqi.net
         [Test]
         public void Test01_FindToken()
         {
-            string data = culqiCRUD.CreateToken().body;
+            string data = culqiCRUD.CreateToken().Content;
             var json_object = JObject.Parse(data);
-            string token = culqiCRUD.GetToken((string)json_object["id"]).body;
+            string token = culqiCRUD.GetToken((string)json_object["id"]).Content;
             var json_token = JObject.Parse(token);
             Assert.AreEqual("token", (string)json_token["object"]);
         }
@@ -27,9 +27,9 @@ namespace culqi.net
         [Test]
         public void Test02_FindOrder()
         {
-            string data = culqiCRUD.CreateOrder().body;
+            string data = culqiCRUD.CreateOrder().Content;
             var json_object = JObject.Parse(data);
-            string order = culqiCRUD.GetOrder((string)json_object["id"]).body;
+            string order = culqiCRUD.GetOrder((string)json_object["id"]).Content;
             var json_order = JObject.Parse(order);
             Assert.AreEqual("order", (string)json_order["object"]);
         }
@@ -37,9 +37,9 @@ namespace culqi.net
         [Test]
         public void Test03_FindCharge()
         {
-            string data = culqiCRUD.CreateCharge().body;
+            string data = culqiCRUD.CreateCharge().Content;
             var json_object = JObject.Parse(data);
-            string charge = culqiCRUD.GetCharge((string)json_object["id"]).body;
+            string charge = culqiCRUD.GetCharge((string)json_object["id"]).Content;
             var json_charge = JObject.Parse(charge);
             Assert.AreEqual("charge", (string)json_charge["object"]);
         }
@@ -47,9 +47,9 @@ namespace culqi.net
         [Test]
         public void Test04_FindPlan()
         {
-            string data = culqiCRUD.CreatePlan().body;
+            string data = culqiCRUD.CreatePlan().Content;
             var json_object = JObject.Parse(data);
-            string plan = culqiCRUD.GetPlan((string)json_object["id"]).body;
+            string plan = culqiCRUD.GetPlan((string)json_object["id"]).Content;
             var json_plan = JObject.Parse(plan);
             Assert.AreEqual("plan", (string)json_plan["object"]);
         }
@@ -57,9 +57,9 @@ namespace culqi.net
         [Test]
         public void Test05_FindCustomer()
         {
-            string data = culqiCRUD.CreateCustomer().body;
+            string data = culqiCRUD.CreateCustomer().Content;
             var json_object = JObject.Parse(data);
-            string customer = culqiCRUD.GetCustomer((string)json_object["id"]).body;
+            string customer = culqiCRUD.GetCustomer((string)json_object["id"]).Content;
             var json_customer = JObject.Parse(customer);
             Assert.AreEqual("customer", (string)json_customer["object"]);
         }
@@ -67,9 +67,9 @@ namespace culqi.net
         [Test]
         public void Test06_FindCard()
         {
-            string data = culqiCRUD.CreateCard().body;
+            string data = culqiCRUD.CreateCard().Content;
             var json_object = JObject.Parse(data);
-            string card = culqiCRUD.GetCard((string)json_object["id"]).body;
+            string card = culqiCRUD.GetCard((string)json_object["id"]).Content;
             var json_card = JObject.Parse(card);
             Assert.AreEqual("card", (string)json_card["object"]);
         }
@@ -77,9 +77,9 @@ namespace culqi.net
         [Test]
         public void Test07_FindSubscription()
         {
-            string data = culqiCRUD.CreateSubscription().body;
+            string data = culqiCRUD.CreateSubscription().Content;
             var json_object = JObject.Parse(data);
-            string subscrption = culqiCRUD.GetSubscription((string)json_object["id"]).body;
+            string subscrption = culqiCRUD.GetSubscription((string)json_object["id"]).Content;
             var json_subscrption = JObject.Parse(subscrption);
             Assert.AreEqual("subscription", (string)json_subscrption["object"]);
         }
@@ -87,9 +87,9 @@ namespace culqi.net
         [Test]
         public void Test08_FindRefund()
         {
-            string data = culqiCRUD.CreateRefund().body;
+            string data = culqiCRUD.CreateRefund().Content;
             var json_object = JObject.Parse(data);
-            string refund = culqiCRUD.GetRefund((string)json_object["id"]).body;
+            string refund = culqiCRUD.GetRefund((string)json_object["id"]).Content;
             var json_refund = JObject.Parse(refund);
             Assert.AreEqual("refund", (string)json_refund["object"]);
         }

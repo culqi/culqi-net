@@ -15,7 +15,7 @@ namespace culqi.net
 		[Test]
 		public void Test01_UpdatePlan()
 		{
-            string data = culqiCRUD.UpdatePlan().body;
+            string data = culqiCRUD.UpdatePlan().Content;
 
 			var json_object = JObject.Parse(data);
 
@@ -26,7 +26,7 @@ namespace culqi.net
         [Test]
         public void Test02_UpdateOrder()
         {
-            string data = culqiCRUD.UpdateOrder().body;
+            string data = culqiCRUD.UpdateOrder().Content;
 
             var json_object = JObject.Parse(data);
 
@@ -37,7 +37,7 @@ namespace culqi.net
         [Test]
         public void Test03_UpdateCharge()
         {
-            string data = culqiCRUD.UpdateCharge().body;
+            string data = culqiCRUD.UpdateCharge().Content;
 
             var json_object = JObject.Parse(data);
 
@@ -48,7 +48,7 @@ namespace culqi.net
         [Test]
         public void Test04_UpdateCard()
         {
-            string data = culqiCRUD.UpdateCard().body;
+            string data = culqiCRUD.UpdateCard().Content;
 
             var json_object = JObject.Parse(data);
 
