@@ -16,22 +16,22 @@ namespace culqi.net
 		{
         }
 
-		public ResponseCulqi Request(Object model, string url, string api_key, string type_method)
+		public RestResponse Request(Object model, string url, string api_key, string type_method)
 		{
 			return GenericRequest(model, url, api_key, type_method, null);
 
 		}
 
-        public ResponseCulqi Request(Object model, string url, string api_key, string type_method, string rsa_id)
+        public RestResponse Request(Object model, string url, string api_key, string type_method, string rsa_id)
         {
             return GenericRequest(model, url, api_key ,type_method, rsa_id);
 
         }
 
 
-        public ResponseCulqi GenericRequest(Object model, string url, string api_key, string type_method, string rsa_id)
+        public RestResponse GenericRequest(Object model, string url, string api_key, string type_method, string rsa_id)
         {
-            ResponseCulqi respCulqi= new ResponseCulqi();
+            //ResponseCulqi respCulqi= new ResponseCulqi();
             var client = new RestClient(config.url_api_base);
             //var api_key = "";
 
@@ -93,10 +93,9 @@ namespace culqi.net
                 request.AddHeader("x-culqi-rsa-id", rsa_id);
             }
             RestResponse response = client.Execute(request);
-            respCulqi.statusCode = (int) response.StatusCode;
-            respCulqi.body = response.Content;
-            Console.WriteLine(respCulqi.body);
-            return respCulqi;
+            /*respCulqi.statusCode = (int) response.StatusCode;
+            respCulqi.body = response.Content;*/
+            return response;
 
         }
 

@@ -19,9 +19,9 @@ namespace culqi.net
 		[Test]
 		public void Test01_DeleteSubscription()
 		{
-			string data = culqiCRUD.CreateSubscription().body;
+			string data = culqiCRUD.CreateSubscription().Content;
 			var json_object = JObject.Parse(data);
-			string subscription = culqiCRUD.DeleteSubscription((string)json_object["id"]).body;
+			string subscription = culqiCRUD.DeleteSubscription((string)json_object["id"]).Content;
 			var json_subscription = JObject.Parse(subscription);
 			Assert.True((bool)json_subscription["deleted"]);
 		}
@@ -29,9 +29,9 @@ namespace culqi.net
 		[Test]
 		public void Test02_DeletePlan()
 		{
-			string data = culqiCRUD.CreatePlan().body;
+			string data = culqiCRUD.CreatePlan().Content;
 			var json_object = JObject.Parse(data);
-			string plan = culqiCRUD.DeletePlan((string)json_object["id"]).body;
+			string plan = culqiCRUD.DeletePlan((string)json_object["id"]).Content;
 			var json_plan = JObject.Parse(plan);
 			Assert.True((bool)json_plan["deleted"]);
 		}
@@ -39,9 +39,9 @@ namespace culqi.net
 		[Test]
 		public void Test03_DeleteCard()
 		{
-			string data = culqiCRUD.CreateCard().body;
+			string data = culqiCRUD.CreateCard().Content;
 			var json_object = JObject.Parse(data);
-			string card = culqiCRUD.DeleteCard((string)json_object["id"]).body;
+			string card = culqiCRUD.DeleteCard((string)json_object["id"]).Content;
 			var json_card = JObject.Parse(card);
 			Assert.True((bool)json_card["deleted"]);
 		}
@@ -49,9 +49,9 @@ namespace culqi.net
 		[Test]
 		public void Test04_DeleteCustomer()
 		{
-			string data = culqiCRUD.CreateCustomer().body;
+			string data = culqiCRUD.CreateCustomer().Content;
 			var json_object = JObject.Parse(data);
-			string customer = culqiCRUD.DeleteCustomer((string)json_object["id"]).body;
+			string customer = culqiCRUD.DeleteCustomer((string)json_object["id"]).Content;
 			var json_customer = JObject.Parse(customer);
 			Assert.True((bool)json_customer["deleted"]);
 		}

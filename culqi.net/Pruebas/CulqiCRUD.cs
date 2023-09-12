@@ -1,5 +1,6 @@
 ﻿using culqi.net;
 using Newtonsoft.Json.Linq;
+using RestSharp;
 using System.Security.Cryptography;
 
 namespace culqi.net;
@@ -17,105 +18,108 @@ public class CulqiCRUD
         security.secret_key = "sk_test_c2267b5b262745f0";
         security.rsa_id = "de35e120-e297-4b96-97ef-10a43423ddec";
 
+
         security.rsa_key = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDswQycch0x/7GZ0oFojkWCYv+gr5CyfBKXc3Izq+btIEMCrkDrIsz4Lnl5E3FSD7/htFn1oE84SaDKl5DgbNoev3pMC7MDDgdCFrHODOp7aXwjG8NaiCbiymyBglXyEN28hLvgHpvZmAn6KFo0lMGuKnz8HiuTfpBl6HpD6+02SQIDAQAB";
+
+        //security.rsa_key = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDswQycch0x/7GZ0oFojkWCYv+gr5CyfBKXc3Izq+btIEMCrkDrIsz4Lnl5E3FSD7/htFn1oE84SaDKl5DgbNoev3pMC7MDDgdCFrHODOp7aXwjG8NaiCbiymyBglXyEN28hLvgHpvZmAn6KFo0lMGuKnz8HiuTfpBl6HpD6+02SQIDAQAB";
         //security.rsa_key = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDYp0451xITpczkBrl5Goxkh7m1oynj8eDHypIn7HmbyoNJd8cS4OsT850hIDBwYmFuwmxF1YAJS8Cd2nes7fjCHh+7oNqgNKxM2P2NLaeo4Uz6n9Lu4KKSxTiIT7BHiSryC0+Dic91XLH7ZTzrfryxigsc+ZNndv0fQLOW2i6OhwIDAQAB";
     }
     
     //create
-    public ResponseCulqi CreateToken()
+    public RestResponse CreateToken()
     {
         return new Token(security).Create(jsonData.JsonToken());
     }
-
-    public ResponseCulqi CreateTokenEncrypt()
+    
+    public RestResponse CreateTokenEncrypt()
     {
         return new Token(security).Create(jsonData.JsonToken(), security.rsa_id, security.rsa_key);
     }
 
-    public ResponseCulqi CreateTokenYape()
+    public RestResponse CreateTokenYape()
     {
         return new Token(security).CreateYape(jsonData.JsonTokenYape());
     }
 
-    public ResponseCulqi CreateCharge()
+    public RestResponse CreateCharge()
     {
-        string data = CreateToken().body;
+        string data = CreateToken().Content;
 
         var json_object = JObject.Parse(data);
        
         return new Charge(security).Create(jsonData.JsonCharge((string)json_object["id"]));
 
     }
-    public ResponseCulqi UpdateCharge()
+    public RestResponse UpdateCharge()
     {
-        string data = CreateCharge().body;
+        string data = CreateCharge().Content;
         var json_object = JObject.Parse(data);
 
         return new Charge(security).Update(jsonData.JsonUpdateCharge(), (string)json_object["id"]);
     }
 
-    public ResponseCulqi CreateChargeEncrypt()
+    public RestResponse CreateChargeEncrypt()
     {
-        string data = CreateToken().body;
+        string data = CreateToken().Content;
 
         var json_object = JObject.Parse(data);
 
         return new Charge(security).Create(jsonData.JsonCharge((string)json_object["id"]), security.rsa_id, security.rsa_key);
     }
 
-    public ResponseCulqi CreateChargeCapture()
+    public RestResponse CreateChargeCapture()
     {
-        string charge_data = CreateCharge().body;
+        string charge_data = CreateCharge().Content;
 
         var json_charge = JObject.Parse(charge_data);
 
         return new Charge(security).Capture((string)json_charge["id"]);
     }
 
-    public ResponseCulqi CreateOrder()
+    public RestResponse CreateOrder()
     {
         return new Order(security).Create(jsonData.JsonOrder());
     }
-    public ResponseCulqi ConfirmOrder()
+    public RestResponse ConfirmOrder()
     {
-        string data = CreateOrder().body;
+        string data = CreateOrder().Content;
         var json_object = JObject.Parse(data);
         return new Order(security).Create(jsonData.JsonConfirmOrder((string)json_object["id"]));
     }
-    public ResponseCulqi UpdateOrder()
+    public RestResponse UpdateOrder()
     {
-        string data = CreateOrder().body;
+        string data = CreateOrder().Content;
         var json_object = JObject.Parse(data);
 
         return new Order(security).Update(jsonData.JsonUpdateOrder(), (string)json_object["id"]);
     }
 
-    public ResponseCulqi CreateOrderEncrypt()
+    public RestResponse CreateOrderEncrypt()
     {
         return new Order(security).Create(jsonData.JsonOrder(), security.rsa_id, security.rsa_key);
 
     }
 
-    public ResponseCulqi CreatePlan()
+    public RestResponse CreatePlan()
     {
         return new Plan(security).Create(jsonData.JsonPlan());
     }
-    public ResponseCulqi UpdatePlan()
+    public RestResponse UpdatePlan()
     {
-        string data = CreatePlan().body;
+        string data = CreatePlan().Content;
         var json_object = JObject.Parse(data);
 
         return new Plan(security).Update(jsonData.JsonUpdatePlan(), (string)json_object["id"]);
     }
-    public ResponseCulqi CreateCustomer()
+    public RestResponse CreateCustomer()
     {
         return new Customer(security).Create(jsonData.JsonCustomer());
     }
 
-    public ResponseCulqi CreateCard()
+    public RestResponse CreateCard()
     {
-        string token = CreateToken().body;
-        string customer = CreateCustomer().body;
+        string token = CreateToken().Content;
+        string customer = CreateCustomer().Content;
 
         var json_token = JObject.Parse(token);
         var json_customer = JObject.Parse(customer);
@@ -123,28 +127,28 @@ public class CulqiCRUD
         return new Card(security).Create(jsonData.JsonCard((string)json_customer["id"], (string)json_token["id"]));
     }
 
-    public ResponseCulqi UpdateCard()
+    public RestResponse UpdateCard()
     {
-        string data = CreateCard().body;
+        string data = CreateCard().Content;
         var json_object = JObject.Parse(data);
 
         return new Card(security).Update(jsonData.JsonUpdateCard(), (string)json_object["id"]);
     }
 
-    public ResponseCulqi CreateSubscription()
+    public RestResponse CreateSubscription()
     {
-        string plan_data = CreatePlan().body;
+        string plan_data = CreatePlan().Content;
         var json_plan = JObject.Parse(plan_data);
 
-        string card_data = CreateCard().body;
+        string card_data = CreateCard().Content;
         var json_card = JObject.Parse(card_data);
 
         return new Subscription(security).Create(jsonData.JsonSubscription((string)json_card["id"], (string)json_plan["id"]));
     }
 
-    public ResponseCulqi CreateRefund()
+    public RestResponse CreateRefund()
     {
-        string data = CreateCharge().body;
+        string data = CreateCharge().Content;
 
         var json_object = JObject.Parse(data);
 
@@ -153,58 +157,58 @@ public class CulqiCRUD
 
     //find
 
-    public ResponseCulqi GetToken(string id)
+    public RestResponse GetToken(string id)
     {
         return new Token(security).Get(id);
     }
 
-    public ResponseCulqi GetOrder(string id)
+    public RestResponse GetOrder(string id)
     {
         return new Order(security).Get(id);
     }
 
-    public ResponseCulqi GetCharge(string id)
+    public RestResponse GetCharge(string id)
     {
         return new Charge(security).Get(id);
     }
 
-    public ResponseCulqi GetPlan(string id)
+    public RestResponse GetPlan(string id)
     {
         return new Plan(security).Get(id);
     }
-    public ResponseCulqi GetCustomer(string id)
+    public RestResponse GetCustomer(string id)
     {
         return new Customer(security).Get(id);
     }
-    public ResponseCulqi GetCard(string id)
+    public RestResponse GetCard(string id)
     {
         return new Card(security).Get(id);
     }
-    public ResponseCulqi GetSubscription(string id)
+    public RestResponse GetSubscription(string id)
     {
         return new Subscription(security).Get(id);
     }
 
-    public ResponseCulqi GetRefund(string id)
+    public RestResponse GetRefund(string id)
     {
         return new Refund(security).Get(id);
     }
 
     //Delete
 
-    public ResponseCulqi DeleteSubscription(string id)
+    public RestResponse DeleteSubscription(string id)
     {
         return new Subscription(security).Delete(id);
     }
-    public ResponseCulqi DeleteCard(string id)
+    public RestResponse DeleteCard(string id)
     {
         return new Card(security).Delete(id);
     }
-    public ResponseCulqi DeleteCustomer(string id)
+    public RestResponse DeleteCustomer(string id)
     {
         return new Customer(security).Delete(id);
     }
-    public ResponseCulqi DeletePlan(string id)
+    public RestResponse DeletePlan(string id)
     {
         return new Plan(security).Delete(id);
     }
