@@ -4,58 +4,61 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using Newtonsoft.Json.Linq;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace culqi.net
-{	
-	[TestFixture]
-	public class TestCreate
-	{
-		CulqiCRUD culqiCRUD = new CulqiCRUD();
+{
+    [TestFixture]
+    public class TestCreate
+    {
+        CulqiCRUD culqiCRUD = new CulqiCRUD();
 
 
-		[Test]
-		public void Test01_CreateToken()
-		{
-			string data = culqiCRUD.CreateToken().Content;
-            Console.WriteLine(""+ ((int) culqiCRUD.CreateToken().StatusCode));
-            var json_object = JObject.Parse(data);
+        [Test]
+        public void Test01_CreateToken()
+        {
+            //var data = culqiCRUD.CreateToken().Content;
+            HttpResponseMessage data = culqiCRUD.CreateToken();
 
-			Assert.AreEqual("token",(string)json_object["object"]);
-		}
-        
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
+
+            Console.WriteLine(data.Content.ReadAsStringAsync().Result);
+            Assert.AreEqual("token", (string)json_object["object"]);
+        }
+
         [Test]
         public void Test02_CreateTokenEncrypt()
         {
-            string data = culqiCRUD.CreateTokenEncrypt().Content;
+            HttpResponseMessage data = culqiCRUD.CreateTokenEncrypt();
 
-            var json_object = JObject.Parse(data);
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
             Assert.AreEqual("token", (string)json_object["object"]);
         }
-        
+
         [Test]
         public void Test03_CreateTokenYape()
         {
-            string data = culqiCRUD.CreateTokenYape().Content;
-            var json_object = JObject.Parse(data);
+            HttpResponseMessage data = culqiCRUD.CreateTokenYape();
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
             Assert.AreEqual("token", (string)json_object["object"]);
         }
 
-		[Test]
-		public void Test04_CreateCharge()
-		{
-			string data = culqiCRUD.CreateCharge().Content;
+        [Test]
+        public void Test04_CreateCharge()
+        {
+            HttpResponseMessage data = culqiCRUD.CreateCharge();
 
-			var json_object = JObject.Parse(data);
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
             Assert.AreEqual("charge", (string)json_object["object"]);
-		}
+        }
 
         [Test]
         public void Test05_CreateChargeEncrypt()
         {
-            string data = culqiCRUD.CreateChargeEncrypt().Content;
+            HttpResponseMessage data = culqiCRUD.CreateChargeEncrypt();
 
-            var json_object = JObject.Parse(data);
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
             Assert.AreEqual("charge", (string)json_object["object"]);
         }
@@ -63,9 +66,9 @@ namespace culqi.net
         [Test]
         public void Test06_ChargeCapture()
         {
-            string capture_data = culqiCRUD.CreateChargeCapture().Content;
+            HttpResponseMessage capture_data = culqiCRUD.CreateChargeCapture();
 
-            var json_capture = JObject.Parse(capture_data);
+            var json_capture = JObject.Parse(capture_data.Content.ReadAsStringAsync().Result);
 
             Assert.AreNotSame("charge", (string)json_capture["id"]);
         }
@@ -73,9 +76,9 @@ namespace culqi.net
         [Test]
         public void Test07_CreateOrder()
         {
-            string data = culqiCRUD.CreateOrder().Content;
+            HttpResponseMessage data = culqiCRUD.CreateOrder();
 
-            var json_object = JObject.Parse(data);
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
             Assert.AreEqual("order", (string)json_object["object"]);
         }
@@ -83,9 +86,9 @@ namespace culqi.net
         [Test]
         public void Test08_CreateOrderEncrypt()
         {
-            string data = culqiCRUD.CreateOrderEncrypt().Content;
+            HttpResponseMessage data = culqiCRUD.CreateOrderEncrypt();
 
-            var json_object = JObject.Parse(data);
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
             Assert.AreEqual("order", (string)json_object["object"]);
         }
@@ -93,63 +96,63 @@ namespace culqi.net
         [Test]
         public void Test09_ConfirmOrder()
         {
-            string data = culqiCRUD.CreateOrder().Content;
+            HttpResponseMessage data = culqiCRUD.CreateOrder();
 
-            var json_object = JObject.Parse(data);
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
             Assert.AreEqual("order", (string)json_object["object"]);
         }
 
         [Test]
-		public void Test10_CreatePlan()
-		{
-			string data = culqiCRUD.CreatePlan().Content;
+        public void Test10_CreatePlan()
+        {
+            HttpResponseMessage data = culqiCRUD.CreatePlan();
 
-			var json_object = JObject.Parse(data);
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
-			Assert.AreEqual("plan", (string)json_object["object"]);
-		}
+            Assert.AreEqual("plan", (string)json_object["object"]);
+        }
 
-		[Test]
-		public void Test11_CreateCustomer()
-		{
-			string data = culqiCRUD.CreateCustomer().Content;
+        [Test]
+        public void Test11_CreateCustomer()
+        {
+            HttpResponseMessage data = culqiCRUD.CreateCustomer();
 
-			var json_object = JObject.Parse(data);
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
-			Assert.AreEqual("customer", (string)json_object["object"]);
-		}
+            Assert.AreEqual("customer", (string)json_object["object"]);
+        }
 
-		[Test]
-		public void Test12_CreateCard()
-		{
-			string data = culqiCRUD.CreateCard().Content;
+        [Test]
+        public void Test12_CreateCard()
+        {
+            HttpResponseMessage data = culqiCRUD.CreateCard();
 
-			var json_object = JObject.Parse(data);
-;
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
+            ;
             Assert.AreEqual("card", (string)json_object["object"]);
-		}
+        }
 
-		[Test]
-		public void Test13_CreateSubscription()
-		{
-			string data = culqiCRUD.CreateSubscription().Content;
+        [Test]
+        public void Test13_CreateSubscription()
+        {
+            HttpResponseMessage data = culqiCRUD.CreateSubscription();
 
-			var json_object = JObject.Parse(data);
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
-			Assert.AreEqual("subscription", (string)json_object["object"]);
-		}
+            Assert.AreEqual("subscription", (string)json_object["object"]);
+        }
 
         [Test]
         public void Test14_CreateRefund()
         {
-            string data = culqiCRUD.CreateRefund().Content;
+            HttpResponseMessage data = culqiCRUD.CreateRefund();
 
-            var json_object = JObject.Parse(data);
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
             Assert.AreEqual("refund", (string)json_object["object"]);
         }
-		
+
     }
-        
+
 }

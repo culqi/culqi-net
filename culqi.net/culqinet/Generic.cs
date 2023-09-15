@@ -1,30 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
+using System.Text.Json.Nodes;
+using System.Text;
 using culqinet.util;
 using Newtonsoft.Json;
 using RestSharp;
 
+
 namespace culqi.net
 {
-	public class Generic
-	{	
-		string URL = "/";
+    public class Generic
+    {
+        string URL = "/";
 
-		Security security { get; set; }
+        Security security { get; set; }
+        Util util = new Util();
 
-		public Generic(Security security, String url)
-		{
-			this.security = security;
+        public Generic(Security security, String url)
+        {
+            this.security = security;
             this.URL = url;
         }
 
-		public RestResponse List(Dictionary<string, object> query_params)
-		{
-			return new RequestCulqi().Request(query_params, URL, security.secret_key, "get");
-		}
+        public HttpResponseMessage List(Dictionary<string, object> query_params)
+        {
+            var responseObject = new RequestCulqi().Request(query_params, URL, security.secret_key, "get");
 
-		public RestResponse Create(Dictionary<string, object> body)
-		{
+            return util.CustomResponse(responseObject);
+        }
+
+        public HttpResponseMessage Create(Dictionary<string, object> body)
+        {
             var api_key = "";
             if (URL.Contains("tokens") || URL.Contains("confirm"))
             {
@@ -34,9 +41,13 @@ namespace culqi.net
             {
                 api_key = security.secret_key;
             }
-            return new RequestCulqi().Request(body, URL, api_key, "post");
-		}
-        public RestResponse Create(Dictionary<string, object> body, String rsa_id, String rsa_key)
+
+            var responseObject = new RequestCulqi().Request(body, URL, api_key, "post");
+
+            return util.CustomResponse(responseObject);
+
+        }
+        public HttpResponseMessage Create(Dictionary<string, object> body, String rsa_id, String rsa_key)
         {
             var api_key = "";
             if (URL.Contains("tokens") || URL.Contains("confirm"))
@@ -56,19 +67,26 @@ namespace culqi.net
             var encryptedResult = encryptedResultTask;//.Result;
             Console.WriteLine(encryptedResult);
             body = encryptedResult;
-            return new RequestCulqi().Request(body, URL, api_key, "post", rsa_id);
+
+            var responseObject = new RequestCulqi().Request(body, URL, api_key, "post", rsa_id);
+
+            return util.CustomResponse(responseObject);
         }
-        public RestResponse Get(String id)
-		{
-			return new RequestCulqi().Request(null, URL + id + "/", security.secret_key, "get");
-		}
+        public HttpResponseMessage Get(String id)
+        {
+            var responseObject = new RequestCulqi().Request(null, URL + id + "/", security.secret_key, "get");
 
-		public RestResponse Update(Dictionary<string, object> body, String id)
-		{
-			return new RequestCulqi().Request(body, URL + id + "/", security.secret_key, "patch");
-		}
+            return util.CustomResponse(responseObject);
+        }
 
-        public RestResponse Update(Dictionary<string, object> body, String id, String rsa_id, String rsa_key)
+        public HttpResponseMessage Update(Dictionary<string, object> body, String id)
+        {
+            var responseObject = new RequestCulqi().Request(body, URL + id + "/", security.secret_key, "patch");
+
+            return util.CustomResponse(responseObject);
+        }
+
+        public HttpResponseMessage Update(Dictionary<string, object> body, String id, String rsa_id, String rsa_key)
         {
             Encrypt encrypt = new Encrypt();
             var jsonString = JsonConvert.SerializeObject(body);
@@ -78,20 +96,29 @@ namespace culqi.net
             // Esperar a que la tarea se complete y obtener el resultado usando la propiedad Result
             var encryptedResult = encryptedResultTask;//.Result;
             body = encryptedResult;
-            return new RequestCulqi().Request(body, URL + id + "/", security.secret_key, "patch", rsa_id);
+
+            var responseObject = new RequestCulqi().Request(body, URL + id + "/", security.secret_key, "patch", rsa_id);
+
+            return util.CustomResponse(responseObject);
         }
 
-        public RestResponse Delete(String id)
+        public HttpResponseMessage Delete(String id)
         {
-            return new RequestCulqi().Request(null, URL + id + "/", security.secret_key, "delete");
+            var responseObject = new RequestCulqi().Request(null, URL + id + "/", security.secret_key, "delete");
+
+            return util.CustomResponse(responseObject);
         }
-        public RestResponse CreateYape(Dictionary<string, object> body)
+        public HttpResponseMessage CreateYape(Dictionary<string, object> body)
         {
-            return new RequestCulqi().Request(body, URL + "yape", security.public_key, "post");
+            var responseObject = new RequestCulqi().Request(body, URL + "yape", security.public_key, "post");
+
+            return util.CustomResponse(responseObject);
         }
-        public RestResponse Capture(String id)
+        public HttpResponseMessage Capture(String id)
         {
-            return new RequestCulqi().Request(null, URL + id + "/capture/", security.secret_key, "post");
+            var responseObject = new RequestCulqi().Request(null, URL + id + "/capture/", security.secret_key, "post");
+
+            return util.CustomResponse(responseObject);
         }
     }
 }
