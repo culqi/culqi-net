@@ -45,7 +45,7 @@ Para encriptar el payload necesitas enviar tu id y llave RSA.
 Ejemplo
 
 ```cs
-public ResponseCulqi CreateTokenEncrypt()
+public HttpResponseMessage CreateTokenEncrypt()
 {
 	return new Token(security).Create(jsonData.JsonToken(), security.rsa_id, security.rsa_key);
 }
@@ -70,7 +70,7 @@ Dictionary<string, object> token = new Dictionary<string, object>
 	{"expiration_year", 2025},
 	{"email", "pruebas123@me.com"}
 };
-string token_created = new Token(security).Create(token);
+HttpResponseMessage token_created = new Token(security).Create(token);
 ```
 
 ### Crear Cargo
@@ -99,7 +99,7 @@ Dictionary<string, object> charge = new Dictionary<string, object>
 	{"source_id", (string)json_token["id"]}
 };
 
-string charge_created = new Charge(security).Create(charge);
+HttpResponseMessage charge_created = new Charge(security).Create(charge);
 ```
 
 ### Crear Devolución
@@ -118,7 +118,7 @@ Dictionary<string, object> refund = new Dictionary<string, object>
 	{"reason", "solicitud_comprador"}
 };
 
-return new Refund(security).Create(refund);
+HttpResponseMessage refund_created = new Refund(security).Create(refund);
 ```
 
 ### Crear Cliente
@@ -139,7 +139,7 @@ Dictionary<string, object> customer = new Dictionary<string, object>
 	{"phone_number", 99004356}
 };
 
-string customer_created = new Customer(security).Create(customer);
+HttpResponseMessage customer_created = new Customer(security).Create(customer);
 ```
 
 ### Crear Tarjeta
@@ -149,15 +149,13 @@ La **tarjeta** es un servicio que te permite guardar la información de las tarj
 Las tarjetas pueden ser creadas vía [API de tarjeta](https://apidocs.culqi.com/#tag/Tarjetas/operation/crear-tarjeta).
 
 ```cs
-var json_customer = JObject.Parse(customer_created);
-
 Dictionary<string, object> card = new Dictionary<string, object>
 {
 	{"customer_id", (string)json_customer["id"]},
 	{"token_id", (string)json_token["id"]}
 };
 
-string card_created = new Card(security).Create(card);
+HttpResponseMessage card_created = new Card(security).Create(card);
 ```
 ### Crear Plan
 
@@ -183,7 +181,7 @@ Dictionary<string, object> plan = new Dictionary<string, object>
 	{"trial_days", 15}
 };
 
-string plan_created = new Plan(security).Create(plan);
+HttpResponseMessage plan_created = new Plan(security).Create(plan);
 ```
 
 ### Crear Suscripción
@@ -202,7 +200,7 @@ Dictionary<string, object> subscription = new Dictionary<string, object>
 	{"plan_id", (string)json_plan["id"]}
 };
 
-string subscription_created = new Subscription(security).Create(subscription);
+HttpResponseMessage subscription_created = new Subscription(security).Create(subscription);
 ```
 
 ### Crear Orden
@@ -213,16 +211,28 @@ La orden contiene la información necesaria para la venta y es usado por el sist
 Las órdenes pueden ser creadas vía [API de orden](https://apidocs.culqi.com/#tag/Ordenes/operation/crear-orden).
 
 ```cs
-var json_plan = JObject.Parse(plan_created);
-var json_card = JObject.Parse(card_created);
+ Dictionary<string, object> client_details = new Dictionary<string, object>
+	{
+		{"first_name", "Juan"},
+		{"last_name", "Diaz"},
+		{"email", "juan.diaz@culqi.com"},
+		{"phone_number", "+51948747421"},
 
-Dictionary<string, object> subscription = new Dictionary<string, object>
-{
-	{"card_id", (string)json_card["id"]},
-	{"plan_id", (string)json_plan["id"]}
-};
+	};
 
-string subscription_created = new Subscription(security).Create(subscription);
+Dictionary<string, object> order = new Dictionary<string, object>
+	{
+		{"amount", 1000},
+		{"currency_code", "PEN"},
+		{"description", "Venta de prueba"},
+		{"order_number", "pedido"+Convert.ToString(order)},
+		{"client_details", client_details},
+		{"expiration_date", secondsSinceEpoch},
+		{"confirm", true}
+
+	};
+
+HttpResponseMessage order_created = new Order(security).Create(subscription);
 ```
 
 
@@ -235,16 +245,16 @@ En la caperta **/Pruebas** encontraras ejemplos para crear un token, charge, pla
 ### Ejemplo Prueba Token
 
 ```cs
- string data = culqiCRUD.CreateToken().body;
- var json_object = JObject.Parse(data);
- Assert.AreEqual("token",(string)json_object["object"]);
+HttpResponseMessage data = culqiCRUD.CreateToken();
+var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
+Assert.AreEqual("token",(string)json_object["object"]);
 ```
 
 ### Ejemplo Prueba Cargo
 
 ```cs
- string data = culqiCRUD.CreateCharge().body;
-var json_object = JObject.Parse(data);
+ HttpResponseMessage data = culqiCRUD.CreateCharge();
+var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 Assert.AreEqual("charge", (string)json_object["object"]);
 ```
 
