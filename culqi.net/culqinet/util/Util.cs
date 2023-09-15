@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using System.Text;
 using RestSharp;
 namespace culqi.net
 {
@@ -22,6 +23,13 @@ namespace culqi.net
             string path = Path.GetRandomFileName();
             path = path.Replace(".", "");
             return path;
+        }
+
+        public HttpResponseMessage CustomResponse(RestResponse resObject)
+        {
+            var response = new HttpResponseMessage(resObject.StatusCode);
+            response.Content = new StringContent(resObject.Content, Encoding.UTF8, "application/json");
+            return response;
         }
 
     }

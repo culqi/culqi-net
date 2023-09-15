@@ -4,31 +4,31 @@ using NUnit.Framework;
 using Newtonsoft.Json.Linq;
 
 namespace culqi.net
-{	
-	[TestFixture]
-	public class TestPatch
-	{
+{
+    [TestFixture]
+    public class TestPatch
+    {
         CulqiCRUD culqiCRUD = new CulqiCRUD();
         Security security = null;
-		
 
-		[Test]
-		public void Test01_UpdatePlan()
-		{
-            string data = culqiCRUD.UpdatePlan().Content;
 
-			var json_object = JObject.Parse(data);
+        [Test]
+        public void Test01_UpdatePlan()
+        {
+            HttpResponseMessage data = culqiCRUD.UpdatePlan();
 
-			Assert.AreEqual("plan", (string)json_object["object"]);
-		}
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
+
+            Assert.AreEqual("plan", (string)json_object["object"]);
+        }
 
 
         [Test]
         public void Test02_UpdateOrder()
         {
-            string data = culqiCRUD.UpdateOrder().Content;
+            HttpResponseMessage data = culqiCRUD.UpdateOrder();
 
-            var json_object = JObject.Parse(data);
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
             Assert.AreEqual("order", (string)json_object["object"]);
         }
@@ -37,9 +37,9 @@ namespace culqi.net
         [Test]
         public void Test03_UpdateCharge()
         {
-            string data = culqiCRUD.UpdateCharge().Content;
+            HttpResponseMessage data = culqiCRUD.UpdateCharge();
 
-            var json_object = JObject.Parse(data);
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
             Assert.AreEqual("charge", (string)json_object["object"]);
         }
@@ -48,9 +48,9 @@ namespace culqi.net
         [Test]
         public void Test04_UpdateCard()
         {
-            string data = culqiCRUD.UpdateCard().Content;
+            HttpResponseMessage data = culqiCRUD.UpdateCard();
 
-            var json_object = JObject.Parse(data);
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
             Assert.AreEqual("card", (string)json_object["object"]);
         }
