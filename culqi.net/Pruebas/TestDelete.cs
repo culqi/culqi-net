@@ -6,55 +6,55 @@ using Newtonsoft.Json.Linq;
 using System.Security.Cryptography;
 
 namespace culqi.net
-{	
-	[TestFixture]
-	public class TestDelete
-	{
+{
+    [TestFixture]
+    public class TestDelete
+    {
 
-		CulqiCRUD culqiCRUD = new CulqiCRUD();
+        CulqiCRUD culqiCRUD = new CulqiCRUD();
 
-		
-		// Eliminar Recursos
 
-		[Test]
-		public void Test01_DeleteSubscription()
-		{
-			string data = culqiCRUD.CreateSubscription().body;
-			var json_object = JObject.Parse(data);
-			string subscription = culqiCRUD.DeleteSubscription((string)json_object["id"]).body;
-			var json_subscription = JObject.Parse(subscription);
-			Assert.True((bool)json_subscription["deleted"]);
-		}
+        // Eliminar Recursos
 
-		[Test]
-		public void Test02_DeletePlan()
-		{
-			string data = culqiCRUD.CreatePlan().body;
-			var json_object = JObject.Parse(data);
-			string plan = culqiCRUD.DeletePlan((string)json_object["id"]).body;
-			var json_plan = JObject.Parse(plan);
-			Assert.True((bool)json_plan["deleted"]);
-		}
+        [Test]
+        public void Test01_DeleteSubscription()
+        {
+            HttpResponseMessage data = culqiCRUD.CreateSubscription();
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
+            HttpResponseMessage subscription = culqiCRUD.DeleteSubscription((string)json_object["id"]);
+            var json_subscription = JObject.Parse(subscription.Content.ReadAsStringAsync().Result);
+            Assert.True((bool)json_subscription["deleted"]);
+        }
 
-		[Test]
-		public void Test03_DeleteCard()
-		{
-			string data = culqiCRUD.CreateCard().body;
-			var json_object = JObject.Parse(data);
-			string card = culqiCRUD.DeleteCard((string)json_object["id"]).body;
-			var json_card = JObject.Parse(card);
-			Assert.True((bool)json_card["deleted"]);
-		}
+        [Test]
+        public void Test02_DeletePlan()
+        {
+            HttpResponseMessage data = culqiCRUD.CreatePlan();
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
+            HttpResponseMessage plan = culqiCRUD.DeletePlan((string)json_object["id"]);
+            var json_plan = JObject.Parse(plan.Content.ReadAsStringAsync().Result);
+            Assert.True((bool)json_plan["deleted"]);
+        }
 
-		[Test]
-		public void Test04_DeleteCustomer()
-		{
-			string data = culqiCRUD.CreateCustomer().body;
-			var json_object = JObject.Parse(data);
-			string customer = culqiCRUD.DeleteCustomer((string)json_object["id"]).body;
-			var json_customer = JObject.Parse(customer);
-			Assert.True((bool)json_customer["deleted"]);
-		}
-		
+        [Test]
+        public void Test03_DeleteCard()
+        {
+            HttpResponseMessage data = culqiCRUD.CreateCard();
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
+            HttpResponseMessage card = culqiCRUD.DeleteCard((string)json_object["id"]);
+            var json_card = JObject.Parse(card.Content.ReadAsStringAsync().Result);
+            Assert.True((bool)json_card["deleted"]);
+        }
+
+        [Test]
+        public void Test04_DeleteCustomer()
+        {
+            HttpResponseMessage data = culqiCRUD.CreateCustomer();
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
+            HttpResponseMessage customer = culqiCRUD.DeleteCustomer((string)json_object["id"]);
+            var json_customer = JObject.Parse(customer.Content.ReadAsStringAsync().Result);
+            Assert.True((bool)json_customer["deleted"]);
+        }
+
     }
 }

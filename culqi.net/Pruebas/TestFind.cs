@@ -6,93 +6,93 @@ using Newtonsoft.Json.Linq;
 using System.Security.Cryptography;
 
 namespace culqi.net
-{	
-	[TestFixture]
-	public class TestFind
-	{
-        
-		CulqiCRUD culqiCRUD = new CulqiCRUD();
+{
+    [TestFixture]
+    public class TestFind
+    {
+
+        CulqiCRUD culqiCRUD = new CulqiCRUD();
 
 
         [Test]
         public void Test01_FindToken()
         {
-            string data = culqiCRUD.CreateToken().body;
-            var json_object = JObject.Parse(data);
-            string token = culqiCRUD.GetToken((string)json_object["id"]).body;
-            var json_token = JObject.Parse(token);
+            HttpResponseMessage data = culqiCRUD.CreateToken();
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
+            HttpResponseMessage token = culqiCRUD.GetToken((string)json_object["id"]);
+            var json_token = JObject.Parse(token.Content.ReadAsStringAsync().Result);
             Assert.AreEqual("token", (string)json_token["object"]);
         }
 
         [Test]
         public void Test02_FindOrder()
         {
-            string data = culqiCRUD.CreateOrder().body;
-            var json_object = JObject.Parse(data);
-            string order = culqiCRUD.GetOrder((string)json_object["id"]).body;
-            var json_order = JObject.Parse(order);
+            HttpResponseMessage data = culqiCRUD.CreateOrder();
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
+            HttpResponseMessage order = culqiCRUD.GetOrder((string)json_object["id"]);
+            var json_order = JObject.Parse(order.Content.ReadAsStringAsync().Result);
             Assert.AreEqual("order", (string)json_order["object"]);
         }
 
         [Test]
         public void Test03_FindCharge()
         {
-            string data = culqiCRUD.CreateCharge().body;
-            var json_object = JObject.Parse(data);
-            string charge = culqiCRUD.GetCharge((string)json_object["id"]).body;
-            var json_charge = JObject.Parse(charge);
+            HttpResponseMessage data = culqiCRUD.CreateCharge();
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
+            HttpResponseMessage charge = culqiCRUD.GetCharge((string)json_object["id"]);
+            var json_charge = JObject.Parse(charge.Content.ReadAsStringAsync().Result);
             Assert.AreEqual("charge", (string)json_charge["object"]);
         }
 
         [Test]
         public void Test04_FindPlan()
         {
-            string data = culqiCRUD.CreatePlan().body;
-            var json_object = JObject.Parse(data);
-            string plan = culqiCRUD.GetPlan((string)json_object["id"]).body;
-            var json_plan = JObject.Parse(plan);
+            HttpResponseMessage data = culqiCRUD.CreatePlan();
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
+            HttpResponseMessage plan = culqiCRUD.GetPlan((string)json_object["id"]);
+            var json_plan = JObject.Parse(plan.Content.ReadAsStringAsync().Result);
             Assert.AreEqual("plan", (string)json_plan["object"]);
         }
 
         [Test]
         public void Test05_FindCustomer()
         {
-            string data = culqiCRUD.CreateCustomer().body;
-            var json_object = JObject.Parse(data);
-            string customer = culqiCRUD.GetCustomer((string)json_object["id"]).body;
-            var json_customer = JObject.Parse(customer);
+            HttpResponseMessage data = culqiCRUD.CreateCustomer();
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
+            HttpResponseMessage customer = culqiCRUD.GetCustomer((string)json_object["id"]);
+            var json_customer = JObject.Parse(customer.Content.ReadAsStringAsync().Result);
             Assert.AreEqual("customer", (string)json_customer["object"]);
         }
 
         [Test]
         public void Test06_FindCard()
         {
-            string data = culqiCRUD.CreateCard().body;
-            var json_object = JObject.Parse(data);
-            string card = culqiCRUD.GetCard((string)json_object["id"]).body;
-            var json_card = JObject.Parse(card);
+            HttpResponseMessage data = culqiCRUD.CreateCard();
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
+            HttpResponseMessage card = culqiCRUD.GetCard((string)json_object["id"]);
+            var json_card = JObject.Parse(card.Content.ReadAsStringAsync().Result);
             Assert.AreEqual("card", (string)json_card["object"]);
         }
 
         [Test]
         public void Test07_FindSubscription()
         {
-            string data = culqiCRUD.CreateSubscription().body;
-            var json_object = JObject.Parse(data);
-            string subscrption = culqiCRUD.GetSubscription((string)json_object["id"]).body;
-            var json_subscrption = JObject.Parse(subscrption);
+            HttpResponseMessage data = culqiCRUD.CreateSubscription();
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
+            HttpResponseMessage subscrption = culqiCRUD.GetSubscription((string)json_object["id"]);
+            var json_subscrption = JObject.Parse(subscrption.Content.ReadAsStringAsync().Result);
             Assert.AreEqual("subscription", (string)json_subscrption["object"]);
         }
 
         [Test]
         public void Test08_FindRefund()
         {
-            string data = culqiCRUD.CreateRefund().body;
-            var json_object = JObject.Parse(data);
-            string refund = culqiCRUD.GetRefund((string)json_object["id"]).body;
-            var json_refund = JObject.Parse(refund);
+            HttpResponseMessage data = culqiCRUD.CreateRefund();
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
+            HttpResponseMessage refund = culqiCRUD.GetRefund((string)json_object["id"]);
+            var json_refund = JObject.Parse(refund.Content.ReadAsStringAsync().Result);
             Assert.AreEqual("refund", (string)json_refund["object"]);
         }
-        
+
     }
 }
