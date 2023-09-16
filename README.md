@@ -232,7 +232,7 @@ Dictionary<string, object> order = new Dictionary<string, object>
 
 	};
 
-HttpResponseMessage order_created = new Order(security).Create(subscription);
+HttpResponseMessage order_created = new Order(security).Create(order);
 ```
 
 
@@ -267,8 +267,7 @@ Assert.AreEqual("charge", (string)json_object["object"]);
 
 ## Changelog
 
-Todos los cambios en las versiones de esta biblioteca están listados en
-[CHANGELOG.md](CHANGELOG.md).
+Todos los cambios en las versiones de esta biblioteca están listados en [CHANGELOG.md](CHANGELOG.md).
 
 ## Autor
 Team Culqi
