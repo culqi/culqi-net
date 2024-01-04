@@ -48,8 +48,8 @@ namespace culqi.net
         public void Test04_CreateCharge()
         {
             HttpResponseMessage data = culqiCRUD.CreateCharge();
-
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
+            Console.WriteLine(json_object);
             Assert.AreEqual("charge", (string)json_object["object"]);
         }
 
@@ -109,7 +109,7 @@ namespace culqi.net
             HttpResponseMessage data = culqiCRUD.CreatePlan();
 
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
-
+            Console.WriteLine(json_object);
             Assert.AreEqual("plan", (string)json_object["object"]);
         }
 
@@ -119,6 +119,7 @@ namespace culqi.net
             HttpResponseMessage data = culqiCRUD.CreateCustomer();
 
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
+            Console.WriteLine(json_object);
 
             Assert.AreEqual("customer", (string)json_object["object"]);
         }

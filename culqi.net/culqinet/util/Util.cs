@@ -32,7 +32,7 @@ namespace culqi.net
             return response;
         }
 
-        public List<string> GetCountryCodes()
+        public static List<string> GetCountryCodes()
         {
 
             List<string> countryCodes = new List<string>
