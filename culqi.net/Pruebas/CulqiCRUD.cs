@@ -103,7 +103,7 @@ namespace culqi.net
         {
             HttpResponseMessage data = CreatePlan();
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
-
+            Console.WriteLine(json_object);
             return new Plan(security).Update(jsonData.JsonUpdatePlan(), (string)json_object["id"]);
         }
         public HttpResponseMessage CreateCustomer()
@@ -115,6 +115,7 @@ namespace culqi.net
         {
             HttpResponseMessage token = CreateToken();
             HttpResponseMessage customer = CreateCustomer();
+            Console.WriteLine(customer);
 
             var json_token = JObject.Parse(token.Content.ReadAsStringAsync().Result);
             var json_customer = JObject.Parse(customer.Content.ReadAsStringAsync().Result);
@@ -138,6 +139,8 @@ namespace culqi.net
             HttpResponseMessage card_data = CreateCard();
             var json_card = JObject.Parse(card_data.Content.ReadAsStringAsync().Result);
 
+            Console.WriteLine((string)json_card["id"]);
+            Console.WriteLine((string)json_plan["id"]);
             return new Subscription(security).Create(jsonData.JsonSubscription((string)json_card["id"], (string)json_plan["id"]));
         }
 

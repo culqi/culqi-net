@@ -182,7 +182,7 @@ public class JsonData
                 {"email", "test"+util.GetRandomString()+"@culqi.com"},
                 {"first_name", "Test"},
                 {"last_name", "Culqi"},
-                {"phone_number", 99004356}
+                {"phone_number", "99004356"}
             };
         return map;
     }
