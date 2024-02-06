@@ -107,7 +107,7 @@ namespace culqi.net
             RestResponse response = client.Execute(request);
             /*respCulqi.statusCode = (int) response.StatusCode;
             respCulqi.body = response.Content;*/
-            Console.WriteLine(request);
+            Console.WriteLine("Validar:: " + JsonConvert.SerializeObject(request));
             Console.WriteLine(response.Content);
             return response;
 

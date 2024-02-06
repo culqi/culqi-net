@@ -144,6 +144,14 @@ namespace culqi.net
             return new Subscription(security).Create(jsonData.JsonSubscription((string)json_card["id"], (string)json_plan["id"]));
         }
 
+        public HttpResponseMessage UpdateSubscription()
+        {
+            HttpResponseMessage data = CreateSubscription();
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
+            Console.WriteLine(json_object);
+            return new Subscription(security).Update(jsonData.JsonUpdateSubscription(), (string)json_object["id"]);
+        }
+
         public HttpResponseMessage CreateRefund()
         {
             HttpResponseMessage data = CreateCharge();

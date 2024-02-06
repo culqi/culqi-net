@@ -15,7 +15,7 @@ namespace culqi.net
 
 
         // Eliminar Recursos
-
+        // dotnet test --filter FullyQualifiedName~TestDelete.Test01_DeleteSubscription 
         [Test]
         public void Test01_DeleteSubscription()
         {
@@ -26,6 +26,7 @@ namespace culqi.net
             Assert.True((bool)json_subscription["deleted"]);
         }
 
+        // dotnet test --filter FullyQualifiedName~TestDelete.Test02_DeletePlan
         [Test]
         public void Test02_DeletePlan()
         {
