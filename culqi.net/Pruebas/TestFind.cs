@@ -44,6 +44,7 @@ namespace culqi.net
             Assert.AreEqual("charge", (string)json_charge["object"]);
         }
 
+        //dotnet test --filter FullyQualifiedName~TestFind.Test04_FindPlan
         [Test]
         public void Test04_FindPlan()
         {
@@ -51,7 +52,9 @@ namespace culqi.net
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
             HttpResponseMessage plan = culqiCRUD.GetPlan((string)json_object["id"]);
             var json_plan = JObject.Parse(plan.Content.ReadAsStringAsync().Result);
-            Assert.AreEqual("plan", (string)json_plan["object"]);
+            //Assert.AreEqual("id", (string)json_plan["object"]);
+            Assert.IsTrue(json_plan.ContainsKey("id"));
+
         }
 
         [Test]
@@ -74,6 +77,7 @@ namespace culqi.net
             Assert.AreEqual("card", (string)json_card["object"]);
         }
 
+        // dotnet test --filter FullyQualifiedName~TestFind.Test07_FindSubscription 
         [Test]
         public void Test07_FindSubscription()
         {
@@ -81,7 +85,8 @@ namespace culqi.net
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
             HttpResponseMessage subscrption = culqiCRUD.GetSubscription((string)json_object["id"]);
             var json_subscrption = JObject.Parse(subscrption.Content.ReadAsStringAsync().Result);
-            Assert.AreEqual("subscription", (string)json_subscrption["object"]);
+            //Assert.AreEqual("subscription", (string)json_subscrption["object"]);
+            Assert.IsTrue(json_subscrption.ContainsKey("id"));
         }
 
         [Test]

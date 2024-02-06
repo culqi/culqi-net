@@ -4,7 +4,7 @@ namespace culqi.net
 {
 	public class Plan : Generic
     {	
-		const string URL = "/plans/";
+		const string URL = "/recurrent/plans/";
 
 		public Plan(Security security) : base(security, URL)
         {

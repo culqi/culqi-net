@@ -32,6 +32,8 @@ namespace culqi.net
                 RestResponse response = new RestResponse();
                 response.StatusCode = HttpStatusCode.BadRequest;
                 response.Content = JsonConvert.SerializeObject(validationResponse);
+
+                Console.WriteLine("Validar:: " + JsonConvert.SerializeObject(response));
                 return util.CustomResponse(response);
             }
             var responseObject = new RequestCulqi().Request(query_params, URL, security.secret_key, "get");
@@ -47,12 +49,22 @@ namespace culqi.net
                 RestResponse response = new RestResponse();
                 response.StatusCode = HttpStatusCode.BadRequest;
                 response.Content = JsonConvert.SerializeObject(validationResponse);
+                // Obtener el valor asociado con la clave "MerchantMessage" o proporcionar un valor predeterminado
+                string merchantMessage = validationResponse?["MerchantMessage"] ?? "Mensaje no encontrado";
+
+                Console.WriteLine($"MerchantMessage: {merchantMessage}");
+
                 return util.CustomResponse(response);
             }
             var api_key = "";
             if (URL.Contains("tokens") || URL.Contains("confirm"))
             {
                 api_key = security.public_key;
+            }
+            else if (URL.Contains("plans") || URL.Contains("subscriptions"))
+            {
+                api_key = security.secret_key;
+                URL = URL + "create";
             }
             else
             {
@@ -78,6 +90,11 @@ namespace culqi.net
             if (URL.Contains("tokens") || URL.Contains("confirm"))
             {
                 api_key = security.public_key;
+            }
+            else if (URL.Contains("plans") || URL.Contains("subscriptions"))
+            {
+                api_key = security.secret_key;
+                URL = URL + "create";
             }
             else
             {
@@ -114,7 +131,7 @@ namespace culqi.net
 
         public HttpResponseMessage Update(Dictionary<string, object> body, String id)
         {
-            Dictionary<string, string> validationResponse = VerifyClassValidationUpdate(id, this.URL);
+            Dictionary<string, string> validationResponse = VerifyClassValidationPayloadUpdate(id, this.URL, body);
             if (validationResponse != null)
             {
                 RestResponse response = new RestResponse();
@@ -129,7 +146,7 @@ namespace culqi.net
 
         public HttpResponseMessage Update(Dictionary<string, object> body, String id, String rsa_id, String rsa_key)
         {
-            Dictionary<string, string> validationResponse = VerifyClassValidationUpdate(id, this.URL);
+            Dictionary<string, string> validationResponse = VerifyClassValidationPayloadUpdate(id, this.URL, body);
             if (validationResponse != null)
             {
                 RestResponse response = new RestResponse();
@@ -225,11 +242,37 @@ namespace culqi.net
             }
             catch (CustomException e)
             {
+                Console.WriteLine("Entro al error ");
                 Dictionary<string, string> errorDictionary = e.ErrorData.ToDictionary();
                 return errorDictionary;
             }
             return null;
         }
+        private static Dictionary<string, string> VerifyClassValidationPayloadUpdate(string id, string url, Dictionary<string, object> body)
+        {
+            try
+            {
+                if (url.Contains("plans"))
+                {
+                    Helper.ValidateId(id);
+                    Helper.ValidateStringStart(id, "pln");
+                    PlanValidation.Update(body);
+                }
+                if (url.Contains("subscriptions"))
+                {
+                    Helper.ValidateId(id);
+                    Helper.ValidateStringStart(id, "sxn");
+                    SubscriptionValidation.Update(body);
+                }
+            }
+            catch (CustomException e)
+            {
+                Dictionary<string, string> errorDictionary = e.ErrorData.ToDictionary();
+                return errorDictionary;
+            }
+            return null;
+        }
+
         private static Dictionary<string, string> VerifyClassValidationUpdate(string id, string url)
         {
             try
@@ -252,6 +295,7 @@ namespace culqi.net
                 }
                 if (url.Contains("plans"))
                 {
+                    Helper.ValidateId(id);
                     Helper.ValidateStringStart(id, "pln");
                 }
                 if (url.Contains("refunds"))
@@ -260,6 +304,7 @@ namespace culqi.net
                 }
                 if (url.Contains("subscriptions"))
                 {
+                    Helper.ValidateId(id);
                     Helper.ValidateStringStart(id, "sxn");
                 }
                 if (url.Contains("orders"))
@@ -287,7 +332,7 @@ namespace culqi.net
             }
             return null;
         }
-        
+
         private static Dictionary<string, string> VerifyClassValidationList(Dictionary<string, object> query_params, string url)
         {
             try
