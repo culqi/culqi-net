@@ -41,6 +41,11 @@ namespace culqinet.util
 
         public static void ValidateId(string id)
         {
+            List<string> data = new List<string> { "id" };
+            if (!data.ContainsKey(field) || data[field] == null || data[field].ToString() == "" || data[field].ToString() == "undefined")
+                {
+                    return new Exception($"El campo 'id' es requerido y no está presente");
+                }
             if (string.IsNullOrEmpty(id) || id.Length != 25)
             {
                 throw new CustomException($"El campo 'id' es inválido. La longitud debe ser de 25 caracteres.");
