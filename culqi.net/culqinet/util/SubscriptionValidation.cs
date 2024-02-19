@@ -68,7 +68,7 @@ namespace culqinet.util
             // Validate parameters creation_date_from
             if (data.ContainsKey("creation_date_from"))
             {
-                if (!(data["creation_date_from"] is string) || !((data["creation_date_from"] as string).Length == 10 && (data["creation_date_from"] as string).Length == 13))
+                if (!(data["creation_date_from"] is long) || !(((string)data["creation_date_from"]).Length == 10 || ((string)data["creation_date_from"]).Length == 13))
                 {
                     throw new CustomException("El campo 'creation_date_from' debe tener una longitud de 10 o 13 caracteres.");
                 }
@@ -77,11 +77,12 @@ namespace culqinet.util
             // Validate parameters creation_date_to
             if (data.ContainsKey("creation_date_to"))
             {
-                if (!(data["creation_date_to"] is string) || !((data["creation_date_to"] as string).Length == 10 && (data["creation_date_to"] as string).Length == 13))
+                if (!(data["creation_date_to"] is long) || !(((string)data["creation_date_to"]).Length == 10 || ((string)data["creation_date_to"]).Length == 13))
                 {
                     throw new CustomException("El campo 'creation_date_to' debe tener una longitud de 10 o 13 caracteres.");
                 }
             }
+
 
             // Validate parameters before
             if (data.ContainsKey("before"))
