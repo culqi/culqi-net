@@ -37,7 +37,7 @@ namespace culqinet.util
                 }
 
                 // Validar currency
-                Exception validateParameterCurrency = Helper.ValidateCurrency(data["currency"].ToString(), Convert.ToInt32(data["amount"]));
+                Exception validateParameterCurrency = Helper.ValidateEnumCurrency(data["currency"].ToString());
                 if (validateParameterCurrency != null)
                 {
                     throw new CustomException(validateParameterCurrency.Message);
@@ -74,7 +74,7 @@ namespace culqinet.util
                 int payAmount = Convert.ToInt32(initialCyclesData["amount"]);
                 int count = Convert.ToInt32(initialCyclesData["count"]);
 
-                Helper.ValidateInitialCycles(hasInitialCharge, data["currency"].ToString(), Convert.ToInt32(data["amount"]), payAmount, count);
+                Helper.ValidateInitialCycles(hasInitialCharge, data["currency"].ToString(), count);
 
                 if (data.ContainsKey("image"))
                 {
@@ -151,18 +151,18 @@ namespace culqinet.util
             // Validar max_amount
             if (data.ContainsKey("max_amount"))
             {
-                if (!(data["max_amount"] is int) || (int)data["max_amount"] < 300 || (int)data["max_amount"] > 500000)
+                if (!(data["max_amount"] is int))
                 {
-                    throw new CustomException("El filtro 'max_amount' admite valores en el rango 300 a 500000.");
+                    throw new CustomException("El filtro 'max_amount' es invalido, debe tener un valor numérico entero.");
                 }
             }
 
             // Validar min_amount
             if (data.ContainsKey("min_amount"))
             {
-                if (!(data["min_amount"] is int) || (int)data["min_amount"] < 300 || (int)data["min_amount"] > 500000)
+                if (!(data["min_amount"] is int))
                 {
-                    throw new CustomException("El filtro 'min_amount' admite valores en el rango 300 a 500000.");
+                    throw new CustomException("El filtro 'min_amount' es invalido, debe tener un valor numérico entero.");
                 }
             }
 
