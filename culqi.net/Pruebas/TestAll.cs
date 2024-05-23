@@ -79,10 +79,8 @@ namespace culqi.net
                 //{"min_amount", 300},
                 //{"max_amount", 500000},
                 //{"status", 1},
-                //{"before", "pln_live_qnJOtJiuGT88dAa5"},
-                //{"after", "pln_live_c6cm1JuefM0WVkli"},
-                //{"creation_date_from", "2023-12-30T00:00:00.000Z"},
-                //{"creation_date_to", "2023-12-20T00:00:00.000Z"},
+                //{"before", "pln_live_uGTYhNHIhndkeYbJ"},
+                //{"after", "pln_live_uGTYhNHIhndkeYbx"}
             };
             HttpResponseMessage plans = new Plan(security).List(filterPlan);
             JObject json_plans = JObject.Parse(plans.Content.ReadAsStringAsync().Result);
@@ -102,10 +100,10 @@ namespace culqi.net
             Dictionary<string, object> filterSubscriptions = new Dictionary<string, object>
             {
                 {"limit", 50},
-                //{"plan_id", "pln_live_WIqnS2qzco4TeTnT"},
+                //{"plan_id", "pln_live_uGTYhNHIhndkeYbJ"},
                 //{"status", 1},
-                //{"before", "sxn_live_JerEsyqmMaJzcCcw"},
-                //{"after", "sxn_live_neFrhLrXQvozBdWn"},
+                //{"before", "sxn_live_IijsfgIHFSNSTnsx"},
+                //{"after", "sxn_live_IijsfgIHFSNSTnsf"},
             };
             HttpResponseMessage subscriptions = new Subscription(security).List(filterSubscriptions);
             JObject json_subscriptions = JObject.Parse(subscriptions.Content.ReadAsStringAsync().Result);
