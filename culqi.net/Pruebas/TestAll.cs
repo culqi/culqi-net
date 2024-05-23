@@ -102,12 +102,10 @@ namespace culqi.net
             Dictionary<string, object> filterSubscriptions = new Dictionary<string, object>
             {
                 {"limit", 50},
-                {"plan_id", "pln_live_WIqnS2qzco4TeTnT"},
-                {"status", 1},
-                {"before", "sxn_live_JerEsyqmMaJzcCcw"},
-                {"after", "sxn_live_neFrhLrXQvozBdWn"},
-                //{"creation_date_from", "2023-12-30T00:00:00.000Z"},
-                //{"creation_date_to", "2023-12-20T00:00:00.000Z"},
+                //{"plan_id", "pln_live_WIqnS2qzco4TeTnT"},
+                //{"status", 1},
+                //{"before", "sxn_live_JerEsyqmMaJzcCcw"},
+                //{"after", "sxn_live_neFrhLrXQvozBdWn"},
             };
             HttpResponseMessage subscriptions = new Subscription(security).List(filterSubscriptions);
             JObject json_subscriptions = JObject.Parse(subscriptions.Content.ReadAsStringAsync().Result);
