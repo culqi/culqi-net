@@ -16,27 +16,23 @@ namespace culqinet.util
             }
             else
             {
-                // Validate card_id
                 if (!(data["card_id"] is string) || ((string)data["card_id"]).Length != 25)
                 {
                     throw new CustomException("El campo 'card_id' es inválido. La longitud debe ser de 25.");
                 }
                 Helper.ValidateStringStart((string)data["card_id"], "crd");
 
-                // Validate plan_id
                 if (!(data["plan_id"] is string) || ((string)data["plan_id"]).Length != 25)
                 {
                     throw new CustomException("El campo 'plan_id' es inválido. La longitud debe ser de 25.");
                 }
                 Helper.ValidateStringStart((string)data["plan_id"], "pln");
 
-                // Validate tyc
                 if (!(data["tyc"] is bool))
                 {
                     throw new CustomException("El campo 'tyc' es inválido o está vacío. El valor debe ser un booleano.");
                 }
 
-                // Validate metadata
                 if (data.ContainsKey("metadata"))
                 {
                     Dictionary<string, object> metadata = data["metadata"] as Dictionary<string, object>;
@@ -65,7 +61,6 @@ namespace culqinet.util
                 }
             }
 
-            // Validate parameters creation_date_from
             if (data.ContainsKey("creation_date_from"))
             {
                 if (!(data["creation_date_from"] is string) || ((string)data["creation_date_from"]).Length != 10 && ((string)data["creation_date_from"]).Length != 13)
@@ -74,7 +69,6 @@ namespace culqinet.util
                 }
             }
 
-            // Validar creation_date_to
             if (data.ContainsKey("creation_date_to"))
             {
                 if (!(data["creation_date_to"] is string) || ((string)data["creation_date_to"]).Length != 10 && ((string)data["creation_date_to"]).Length != 13)
@@ -84,7 +78,6 @@ namespace culqinet.util
             }
 
 
-            // Validate parameters before
             if (data.ContainsKey("before"))
             {
                 if (!(data["before"] is string) || ((string)data["before"]).Length != 25)
@@ -93,7 +86,6 @@ namespace culqinet.util
                 }
             }
 
-            // Validate parameters after
             if (data.ContainsKey("after"))
             {
                 if (!(data["after"] is string) || ((string)data["after"]).Length != 25)
@@ -102,7 +94,6 @@ namespace culqinet.util
                 }
             }
 
-            // Validate parameters limit
             if (data.ContainsKey("limit"))
             {
                 if (!(data["limit"] is int) || (int)data["limit"] < 1 || (int)data["limit"] > 100)
@@ -126,14 +117,12 @@ namespace culqinet.util
             }
             else
             {
-                // Validate card_id
                 if (!(data["card_id"] is string) || ((string)data["card_id"]).Length != 25)
                 {
                     throw new CustomException("El campo 'card_id' es inválido. La longitud debe ser de 25.");
                 }
                 Helper.ValidateStringStart((string)data["card_id"], "crd");
 
-                // Validate metadata
                 if (data.ContainsKey("metadata"))
                 {
                     Dictionary<string, object> metadata = data["metadata"] as Dictionary<string, object>;

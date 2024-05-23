@@ -22,7 +22,7 @@ namespace culqi.net
         {
             security = new Security();
             security.public_key = "pk_test_e94078b9b248675d";
-            security.secret_key = "sk_live_c2eec44e937847f8";
+            security.secret_key = "sk_test_c2267b5b262745f0";
         }
 
         [Test]

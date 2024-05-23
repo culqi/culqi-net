@@ -18,8 +18,6 @@ namespace culqi.net
             HttpResponseMessage data = culqiCRUD.UpdatePlan();
 
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
-            Console.WriteLine(json_object);
-            //Assert.AreEqual("plan", (string)json_object["object"]);
             Assert.IsTrue(json_object.ContainsKey("id"));
         }
 
@@ -62,8 +60,6 @@ namespace culqi.net
         {
             HttpResponseMessage data = culqiCRUD.UpdateSubscription();
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
-            Console.WriteLine(json_object);
-            //Assert.AreEqual("plan", (string)json_object["object"]);
             Assert.IsTrue(json_object.ContainsKey("id"));
 
         }
