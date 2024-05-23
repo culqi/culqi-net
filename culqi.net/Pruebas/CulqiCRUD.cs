@@ -148,7 +148,6 @@ namespace culqi.net
         {
             HttpResponseMessage data = CreateSubscription();
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
-            Console.WriteLine(json_object);
             return new Subscription(security).Update(jsonData.JsonUpdateSubscription(), (string)json_object["id"]);
         }
 
