@@ -76,11 +76,11 @@ namespace culqi.net
             Dictionary<string, object> filterPlan = new Dictionary<string, object>
             {
                 {"limit", 50},
-                {"min_amount", 300},
-                {"max_amount", 500000},
-                {"status", 1},
-                {"before", "pln_live_qnJOtJiuGT88dAa5"},
-                {"after", "pln_live_c6cm1JuefM0WVkli"},
+                //{"min_amount", 300},
+                //{"max_amount", 500000},
+                //{"status", 1},
+                //{"before", "pln_live_qnJOtJiuGT88dAa5"},
+                //{"after", "pln_live_c6cm1JuefM0WVkli"},
                 //{"creation_date_from", "2023-12-30T00:00:00.000Z"},
                 //{"creation_date_to", "2023-12-20T00:00:00.000Z"},
             };
