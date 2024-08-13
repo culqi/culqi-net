@@ -45,6 +45,15 @@ namespace culqi.net
             return new Charge(security).Create(jsonData.JsonCharge((string)json_object["id"]));
 
         }
+
+        public HttpResponseMessage CreateChargeWithCustomHeader()
+        {
+            HttpResponseMessage data = CreateToken();
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
+
+            return new Charge(security).Create(jsonData.JsonCharge((string)json_object["id"]), jsonData.JsonCustomHeader());
+        }
+
         public HttpResponseMessage UpdateCharge()
         {
             HttpResponseMessage data = CreateCharge();
@@ -60,6 +69,14 @@ namespace culqi.net
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
             return new Charge(security).Create(jsonData.JsonCharge((string)json_object["id"]), security.rsa_id, security.rsa_key);
+        }
+
+        public HttpResponseMessage CreateChargeEncryptWithCustomHeader()
+        {
+            HttpResponseMessage data = CreateToken();
+            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
+
+            return new Charge(security).Create(jsonData.JsonCharge((string)json_object["id"]), security.rsa_id, security.rsa_key, jsonData.JsonCustomHeader());
         }
 
         public HttpResponseMessage CreateChargeCapture()

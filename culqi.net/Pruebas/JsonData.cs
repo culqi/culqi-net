@@ -169,6 +169,18 @@ public class JsonData
         return map;
     }
 
+    public Dictionary<string, object> JsonCustomHeader()
+    {
+        Dictionary<string, object> map = new Dictionary<string, object>
+            {
+                {"X-Charge-Channel", "recurrent"},
+                {"X-add-header", null},
+                {"X-config-valid", "  "},
+            };
+
+        return map;
+    }
+
     public Dictionary<string, object> JsonUpdatePlan()
     {
         Dictionary<string, object> metadata = new Dictionary<string, object>
