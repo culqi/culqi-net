@@ -41,7 +41,7 @@ namespace culqi.net
             return util.CustomResponse(responseObject);
         }
 
-        public HttpResponseMessage Create(Dictionary<string, object> body)
+        public HttpResponseMessage Create(Dictionary<string, object> body, Dictionary<string, object> custom_header = null)
         {
             Dictionary<string, string> validationResponse = VerifyClassValidationCreate(body, this.URL);
             if (validationResponse != null)
@@ -68,12 +68,12 @@ namespace culqi.net
                 api_key = security.secret_key;
             }
 
-            var responseObject = new RequestCulqi().Request(body, URL, api_key, "post");
+            var responseObject = new RequestCulqi().Request(body, URL, api_key, "post", custom_header);
 
             return util.CustomResponse(responseObject);
 
         }
-        public HttpResponseMessage Create(Dictionary<string, object> body, String rsa_id, String rsa_key)
+        public HttpResponseMessage Create(Dictionary<string, object> body, String rsa_id, String rsa_key, Dictionary<string, object> custom_header = null)
         {
             Dictionary<string, string> validationResponse = VerifyClassValidationCreate(body, this.URL);
             if (validationResponse != null)
@@ -108,7 +108,7 @@ namespace culqi.net
             Console.WriteLine(encryptedResult);
             body = encryptedResult;
 
-            var responseObject = new RequestCulqi().Request(body, URL, api_key, "post", rsa_id);
+            var responseObject = new RequestCulqi().Request(body, URL, api_key, "post", rsa_id, custom_header);
 
             return util.CustomResponse(responseObject);
         }

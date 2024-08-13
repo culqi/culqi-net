@@ -6,30 +6,30 @@ using Newtonsoft.Json;
 using RestSharp;
 namespace culqi.net
 {
-	public class RequestCulqi
-	{	
+    public class RequestCulqi
+    {
 
-		Config config = new Config();
+        Config config = new Config();
         Security security { get; set; }
 
         public RequestCulqi()
-		{
-        }
-
-		public RestResponse Request(Object model, string url, string api_key, string type_method)
-		{
-			return GenericRequest(model, url, api_key, type_method, null);
-
-		}
-
-        public RestResponse Request(Object model, string url, string api_key, string type_method, string rsa_id)
         {
-            return GenericRequest(model, url, api_key ,type_method, rsa_id);
+        }
+
+        public RestResponse Request(Object model, string url, string api_key, string type_method, Dictionary<string, object> custom_header = null)
+        {
+            return GenericRequest(model, url, api_key, type_method, null, custom_header);
+
+        }
+
+        public RestResponse Request(Object model, string url, string api_key, string type_method, string rsa_id, Dictionary<string, object> custom_header = null)
+        {
+            return GenericRequest(model, url, api_key, type_method, rsa_id, custom_header);
 
         }
 
 
-        public RestResponse GenericRequest(Object model, string url, string api_key, string type_method, string rsa_id)
+        public RestResponse GenericRequest(Object model, string url, string api_key, string type_method, string rsa_id, Dictionary<string, object> custom_header = null)
         {
             //ResponseCulqi respCulqi= new ResponseCulqi();
             var client = new RestClient(config.url_api_base);
@@ -49,7 +49,7 @@ namespace culqi.net
                 api_key = CulqiKeys.secret_key;
             }
             */
-            
+
             RestSharp.RestRequest request = new RestRequest();
 
             if (type_method.Equals("get"))
@@ -74,7 +74,7 @@ namespace culqi.net
                 if (model != null)
                 {
                     request.AddJsonBody(model);
-                }    
+                }
             }
             else if (type_method.Equals("patch"))
             {
@@ -87,7 +87,8 @@ namespace culqi.net
 
             var env = config.x_culqi_env_live;
 
-            if(api_key.Contains("test")) {
+            if (api_key.Contains("test"))
+            {
                 env = config.x_culqi_env_test;
             }
 
@@ -104,6 +105,21 @@ namespace culqi.net
             {
                 request.AddHeader("x-culqi-rsa-id", rsa_id);
             }
+
+            if (custom_header != null)
+            {
+                Console.WriteLine("\nCustom Headers:");
+                Console.WriteLine(JsonConvert.SerializeObject(custom_header));
+
+                foreach (var header in custom_header)
+                {
+                    if (header.Value != null && !string.IsNullOrWhiteSpace(header.Value.ToString()))
+                    {
+                        request.AddHeader(header.Key, header.Value.ToString());
+                    }
+                }
+            }
+
             RestResponse response = client.Execute(request);
             /*respCulqi.statusCode = (int) response.StatusCode;
             respCulqi.body = response.Content;*/
