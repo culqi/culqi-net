@@ -69,10 +69,20 @@ namespace culqi.net
             Assert.True(valid);
         }
 
+        // dotnet test --filter FullyQualifiedName~TestAll.Test04_AllPlans
         [Test]
         public void Test04_AllPlans()
         {
-            HttpResponseMessage plans = new Plan(security).List(filter);
+            Dictionary<string, object> filterPlan = new Dictionary<string, object>
+            {
+                {"limit", 50},
+                //{"min_amount", 300},
+                //{"max_amount", 500000},
+                //{"status", 1},
+                //{"before", "pln_live_uGTYhNHIhndkeYbJ"},
+                //{"after", "pln_live_uGTYhNHIhndkeYbx"}
+            };
+            HttpResponseMessage plans = new Plan(security).List(filterPlan);
             JObject json_plans = JObject.Parse(plans.Content.ReadAsStringAsync().Result);
             List<Dictionary<string, object>> data = json_plans["data"].ToObject<List<Dictionary<string, object>>>();
             bool valid = false;
@@ -83,10 +93,19 @@ namespace culqi.net
             Assert.True(valid);
         }
 
+        // dotnet test --filter FullyQualifiedName~TestAll.Test05_AllSubscriptions 
         [Test]
         public void Test05_AllSubscriptions()
         {
-            HttpResponseMessage subscriptions = new Subscription(security).List(filter);
+            Dictionary<string, object> filterSubscriptions = new Dictionary<string, object>
+            {
+                {"limit", 50},
+                //{"plan_id", "pln_live_uGTYhNHIhndkeYbJ"},
+                //{"status", 1},
+                //{"before", "sxn_live_IijsfgIHFSNSTnsx"},
+                //{"after", "sxn_live_IijsfgIHFSNSTnsf"},
+            };
+            HttpResponseMessage subscriptions = new Subscription(security).List(filterSubscriptions);
             JObject json_subscriptions = JObject.Parse(subscriptions.Content.ReadAsStringAsync().Result);
             List<Dictionary<string, object>> data = json_subscriptions["data"].ToObject<List<Dictionary<string, object>>>();
             bool valid = false;

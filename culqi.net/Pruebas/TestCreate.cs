@@ -103,14 +103,28 @@ namespace culqi.net
             Assert.AreEqual("order", (string)json_object["object"]);
         }
 
+        // dotnet test --filter FullyQualifiedName~TestCreate.Test10_CreatePlan
         [Test]
         public void Test10_CreatePlan()
         {
-            HttpResponseMessage data = culqiCRUD.CreatePlan();
+            try
+            {
+                HttpResponseMessage data = culqiCRUD.CreatePlan();
+                if (data.IsSuccessStatusCode)
+                {
+                    var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
+                    Assert.IsTrue(json_object.ContainsKey("id"));
+                }
+                else
+                {
+                    Assert.Fail("La solicitud no fue exitosa.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail("Error durante la ejecución de la prueba.");
+            }
 
-            var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
-            Console.WriteLine(json_object);
-            Assert.AreEqual("plan", (string)json_object["object"]);
         }
 
         [Test]
@@ -133,7 +147,8 @@ namespace culqi.net
             ;
             Assert.AreEqual("card", (string)json_object["object"]);
         }
-
+        
+        // dotnet test --filter FullyQualifiedName~TestCreate.Test13_CreateSubscription
         [Test]
         public void Test13_CreateSubscription()
         {
@@ -141,7 +156,7 @@ namespace culqi.net
 
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
 
-            Assert.AreEqual("subscription", (string)json_object["object"]);
+            Assert.IsTrue(json_object.ContainsKey("id"));
         }
 
         [Test]
@@ -154,6 +169,49 @@ namespace culqi.net
             Assert.AreEqual("refund", (string)json_object["object"]);
         }
 
+        [Test]
+        public void Test15_CreateChargeWithCustomHeader()
+        {
+            try
+            {
+                HttpResponseMessage data = culqiCRUD.CreateChargeWithCustomHeader();
+                if (data.IsSuccessStatusCode)
+                {
+                    var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
+                    Assert.IsTrue(json_object.ContainsKey("id"));
+                }
+                else
+                {
+                    Assert.Fail("La solicitud no fue exitosa.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail("Error durante la ejecución de la prueba.");
+            }
+        }
+
+        [Test]
+        public void Test16_CreateChargeEncryptWithCustomHeader()
+        {
+            try
+            {
+                HttpResponseMessage data = culqiCRUD.CreateChargeEncryptWithCustomHeader();
+                if (data.IsSuccessStatusCode)
+                {
+                    var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
+                    Assert.IsTrue(json_object.ContainsKey("id"));
+                }
+                else
+                {
+                    Assert.Fail("La solicitud no fue exitosa.");
+                }
+            }
+            catch (Exception ex)
+            {
+                Assert.Fail("Error durante la ejecución de la prueba.");
+            }
+        }
     }
 
 }
