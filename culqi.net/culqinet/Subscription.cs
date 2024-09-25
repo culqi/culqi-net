@@ -5,7 +5,7 @@ namespace culqi.net
 	public class Subscription : Generic
     {	
 
-		const string URL = "/subscriptions/";
+		const string URL = "/recurrent/subscriptions/";
 
 		public Subscription(Security security) : base(security, URL)
         {
