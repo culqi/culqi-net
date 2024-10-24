@@ -165,7 +165,11 @@ namespace culqi.net
         {
             HttpResponseMessage data = CreateSubscription();
             var json_object = JObject.Parse(data.Content.ReadAsStringAsync().Result);
-            return new Subscription(security).Update(jsonData.JsonUpdateSubscription(), (string)json_object["id"]);
+
+            HttpResponseMessage card_data = CreateCard();
+            var json_card = JObject.Parse(card_data.Content.ReadAsStringAsync().Result);
+
+            return new Subscription(security).Update(jsonData.JsonUpdateSubscription((string)json_card["id"]), (string)json_object["id"]);
         }
 
         public HttpResponseMessage CreateRefund()
