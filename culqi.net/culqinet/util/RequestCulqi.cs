@@ -35,7 +35,7 @@ namespace culqi.net
             var client = new RestClient(config.url_api_base);
             //var api_key = "";
 
-            if (url == "/tokens/" || url == "/tokens/yape")
+            if ((url == "/tokens/" || url == "/tokens/yape") && type_method.Equals("post"))
             {
                 client = new RestClient(config.url_api_secure);
             }
