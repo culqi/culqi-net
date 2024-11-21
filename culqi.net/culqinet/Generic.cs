@@ -33,7 +33,7 @@ namespace culqi.net
                 response.StatusCode = HttpStatusCode.BadRequest;
                 response.Content = JsonConvert.SerializeObject(validationResponse);
 
-                string merchantMessage = validationResponse?["MerchantMessage"] ?? "Mensaje no encontrado";
+                string merchantMessage = validationResponse?["merchant_message"] ?? "Mensaje no encontrado";
                 return util.CustomResponse(response);
             }
             var responseObject = new RequestCulqi().Request(query_params, URL, security.secret_key, "get");
@@ -49,8 +49,8 @@ namespace culqi.net
                 RestResponse response = new RestResponse();
                 response.StatusCode = HttpStatusCode.BadRequest;
                 response.Content = JsonConvert.SerializeObject(validationResponse);
-                // Obtener el valor asociado con la clave "MerchantMessage" o proporcionar un valor predeterminado
-                string merchantMessage = validationResponse?["MerchantMessage"] ?? "Mensaje no encontrado";
+                // Obtener el valor asociado con la clave "merchant_message" o proporcionar un valor predeterminado
+                string merchantMessage = validationResponse?["merchant_message"] ?? "Mensaje no encontrado";
                 return util.CustomResponse(response);
             }
             var api_key = "";
@@ -81,7 +81,7 @@ namespace culqi.net
                 RestResponse response = new RestResponse();
                 response.StatusCode = HttpStatusCode.BadRequest;
                 response.Content = JsonConvert.SerializeObject(validationResponse);
-                string merchantMessage = validationResponse?["MerchantMessage"] ?? "Mensaje no encontrado";
+                string merchantMessage = validationResponse?["merchant_message"] ?? "Mensaje no encontrado";
                 return util.CustomResponse(response);
             }
             var api_key = "";
@@ -120,7 +120,7 @@ namespace culqi.net
                 RestResponse response = new RestResponse();
                 response.StatusCode = HttpStatusCode.BadRequest;
                 response.Content = JsonConvert.SerializeObject(validationResponse);
-                string merchantMessage = validationResponse?["MerchantMessage"] ?? "Mensaje no encontrado";
+                string merchantMessage = validationResponse?["merchant_message"] ?? "Mensaje no encontrado";
                 return util.CustomResponse(response);
             }
             var responseObject = new RequestCulqi().Request(null, URL + id + "/", security.secret_key, "get");
@@ -136,7 +136,7 @@ namespace culqi.net
                 RestResponse response = new RestResponse();
                 response.StatusCode = HttpStatusCode.BadRequest;
                 response.Content = JsonConvert.SerializeObject(validationResponse);
-                string merchantMessage = validationResponse?["MerchantMessage"] ?? "Mensaje no encontrado";
+                string merchantMessage = validationResponse?["merchant_message"] ?? "Mensaje no encontrado";
                 return util.CustomResponse(response);
             }
             var responseObject = new RequestCulqi().Request(body, URL + id + "/", security.secret_key, "patch");
@@ -152,7 +152,7 @@ namespace culqi.net
                 RestResponse response = new RestResponse();
                 response.StatusCode = HttpStatusCode.BadRequest;
                 response.Content = JsonConvert.SerializeObject(validationResponse);
-                string merchantMessage = validationResponse?["MerchantMessage"] ?? "Mensaje no encontrado";
+                string merchantMessage = validationResponse?["merchant_message"] ?? "Mensaje no encontrado";
                 return util.CustomResponse(response);
             }
             Encrypt encrypt = new Encrypt();
@@ -177,7 +177,7 @@ namespace culqi.net
                 RestResponse response = new RestResponse();
                 response.StatusCode = HttpStatusCode.BadRequest;
                 response.Content = JsonConvert.SerializeObject(validationResponse);
-                string merchantMessage = validationResponse?["MerchantMessage"] ?? "Mensaje no encontrado";
+                string merchantMessage = validationResponse?["merchant_message"] ?? "Mensaje no encontrado";
                 return util.CustomResponse(response);
             }
             var responseObject = new RequestCulqi().Request(null, URL + id + "/", security.secret_key, "delete");
@@ -192,7 +192,7 @@ namespace culqi.net
                 RestResponse response = new RestResponse();
                 response.StatusCode = HttpStatusCode.BadRequest;
                 response.Content = JsonConvert.SerializeObject(validationResponse);
-                string merchantMessage = validationResponse?["MerchantMessage"] ?? "Mensaje no encontrado";
+                string merchantMessage = validationResponse?["merchant_message"] ?? "Mensaje no encontrado";
                 return util.CustomResponse(response);
             }
             var responseObject = new RequestCulqi().Request(body, URL + "yape", security.public_key, "post");
@@ -245,7 +245,6 @@ namespace culqi.net
             }
             catch (CustomException e)
             {
-                Console.WriteLine("Entro al error ");
                 Dictionary<string, string> errorDictionary = e.ErrorData.ToDictionary();
                 return errorDictionary;
             }
