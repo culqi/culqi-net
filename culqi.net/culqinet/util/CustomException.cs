@@ -8,7 +8,7 @@ namespace culqinet.util
         {
             ErrorData = new ErrorData
             {
-                Object = "error",
+                ObjectType = "error",
                 Type = "param_error",
                 MerchantMessage = merchantMessage,
                 UserMessage = merchantMessage
@@ -20,7 +20,7 @@ namespace culqinet.util
 
     public class ErrorData
     {
-        public string Object { get; set; }
+        public string ObjectType { get; set; }
         public string Type { get; set; }
         public string MerchantMessage { get; set; }
         public string UserMessage { get; set; }
@@ -30,10 +30,10 @@ namespace culqinet.util
         {
             return new Dictionary<string, string>
             {
-                { "Object", this.Object },
-                { "Type", this.Type },
-                { "MerchantMessage", this.MerchantMessage },
-                { "UserMessage", this.UserMessage }
+                { "object", this.ObjectType },
+                { "type", this.Type },
+                { "merchant_message", this.MerchantMessage },
+                { "user_message", this.UserMessage }
             };
         }
     }
