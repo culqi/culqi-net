@@ -38,6 +38,10 @@ security.rsa_id = "INSERTE_SU_RSA_ID";
 security.rsa_key = "INSERTE_SU_LLAVE_RSA";
 ```
 
+### Configurar pruebas y ejemplos
+
+Reemplaza los marcadores de posición por tus llaves de prueba (`pk_test_`/`sk_test_`) y las credenciales RSA correspondientes, solo en tu entorno local. Las pruebas y ejemplos realizan llamadas reales a la API; no hagas commit de tus llaves.
+
 ### Encriptar payload
 
 Para encriptar el payload necesitas enviar tu id y llave RSA.
